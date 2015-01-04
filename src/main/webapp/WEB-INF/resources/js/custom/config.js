@@ -44,11 +44,12 @@ app
 					controller : 'AthleteController',
 					templateUrl : 'resources/html/partials/view/athlete_detail.html'
 				})
-				.when(
+/*				.when(
 				'/login',
 				{
 					templateUrl : 'resources/html/partials/view/login.html'
-				}).otherwise({
+				})*/
+				.otherwise({
 					redirectTo : "/main"
 				});
 

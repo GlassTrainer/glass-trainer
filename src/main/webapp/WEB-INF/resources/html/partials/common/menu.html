@@ -20,7 +20,9 @@
                 <li><a data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')"
                        href="#/acceleration">İvme</a></li>
                 <li><a data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')||hasRole('ROLE_ATHLETE')"
-                       href="antrenmanlar.html">ASD</a></li>
+                       data-target="#aboutUs" href="" data-toggle="modal">Hakkında</a></li>
+                <li><a data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')||hasRole('ROLE_ATHLETE')"
+                       data-target="#contactUs" href="" data-toggle="modal">İletişim</a></li>
             </ul>
 
             <ul class="nav navbar-nav Margin-T8 pull-right" data-ng-show="!user">
@@ -30,12 +32,12 @@
             </ul>
 
             <li class="nav-user dropdown Margin-T10  pull-right"
-                data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')||hasRole('ROLE_ATHLETE')">
+                data-ng-show="user">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
-				<span class="theme-user-name-box">ZB<span>
+				<span class="theme-user-name-box">{{ user.username | FirstTwoLetters }}<span>
 				<b class="caret pull-right Margin-T20"></b>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" data-ng-show="user">
                     <li><a href="#" class="accountSettingsBtn">Hesap Ayarları</a></li>
                     <li class="divider"></li>
                     <li><a href="" data-ng-click="logout()">Çıkış</a></li>
@@ -119,14 +121,18 @@
             <div class="modal-body">
 
                 <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-
+                    Bu proje, Orta Doğu Teknik Üniversitesi, Bilgisayar ve Öğretim Teknolojileri Eğitimi
+                    Bölümü öğretim üyesi Prof. Dr. Kürşat Çağıltay danışmanlığında, aynı bölüm 4. Sınıf
+                    öğrencileri Ferhat Yaldıran, Jülide Hülya Şengül, Serhat Can ve Zeki Bozbıyık tarafından
+                    geliştirilmektedir. Bu proje kapsamında, Google Glass ve Arduino teknolojileri bir araya
+                    getirilerek, sporcu eğitimini amaçlayan giyilebilir bir teknoloji oluşturulması planlanmıştır.
+                    Projenin hedef kitlesi, koşu içeren antrenmanlarda çalışan antrenörler ve sporculardır.
+                    Bu proje ile antrenörlerin, birlikte çalıştığı sporcuların verilerini daha kısa zamanda
+                    ve daha etkin bir şekilde ölçmesi ve bu verileri görebilmesi sağlanmaktadır. Son zamanlarda
+                    yaygınlaşmakta olan giyilebilir teknolojiler sayesinde hem antrenör hem sporcular antrenman
+                    sırasında modern teknolojiler ile buluşacaktır. Ayrıca, sporcunun kalp atım hızı, koştuğu
+                    mesafe ve koşma hızı bilgileri tek bir materyal aracılığı ile elde edilecek ve daha sonra
+                    kullanılmak üzere saklanabilecektir.
                 </p>
 
                 <div class="clear"></div>

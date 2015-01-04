@@ -1,4 +1,4 @@
-app.controller('MainController', function ($rootScope, $scope, $location) {
+app.controller('MainController', function ($rootScope, $scope, $location, $log) {
 
     $scope.logout = function () {
         $scope.$emit('event:logoutRequest');
@@ -10,6 +10,7 @@ app.controller('MainController', function ($rootScope, $scope, $location) {
         $scope.$emit('event:loginRequest', credentials.username, credentials.password);
         $('#login').modal('toggle');
         $location.path($rootScope.navigateTo);
+
     };
 
     $rootScope.hasRole = function (role) {
@@ -21,7 +22,7 @@ app.controller('MainController', function ($rootScope, $scope, $location) {
 
         for (var int = 0; int < $rootScope.user.authorities.length; int++) {
 
-            //console.info("Log ", int, " = ",$rootScope.user.authorities[int]);
+            console.info("Log ", int, " = ",$rootScope.user.authorities[int]);
 
             if ($rootScope.user.authorities[int].authority == role) {
                 console.info("true");
@@ -35,14 +36,15 @@ app.controller('MainController', function ($rootScope, $scope, $location) {
         }
 
 
-        /* if ($rootScope.user === undefined) { return false; }
+         if ($rootScope.user === undefined) { return false; }
 
          if ($rootScope.user.authorities[role] === undefined) { return false; }
 
-         if($rootScope.user.authorities.authority == role) return true;*/
+         if($rootScope.user.authorities.authority == role) return true;
 
         return false;
     };
+
 });
 
 app.controller('AthleteController', function ($scope, $log, AthleteService, $routeParams) {
