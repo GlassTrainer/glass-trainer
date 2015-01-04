@@ -1,0 +1,168 @@
+<div class="container theme-showcase padding-RL0 theme-player-detail-part" role="main"
+     data-ng-init="athleteDetails()">
+    <div class="col-md-12 col-sm-12 col-xs-12 BG-White  Margin-T30">
+        <div class="col-md-3 col-sm-3 col-xs-12 theme-player-detail-image  TX-Center">
+            <img src="resources/images/players-100x/{{athlete.id}}.jpg" class="img-circle respo-image">
+
+            <h4 class="theme-player-name">{{athlete.firstname}} {{athlete.surname}}</h4>
+            <label class="col-xs-12">Boy:
+			  <span class="Font-w100">
+				 {{athlete.height}} cm
+			  </span>
+            </label>
+
+
+            <label class="col-xs-12">Kilo:
+			  <span class="Font-w100">
+				 {{athlete.weight}} kg
+			  </span>
+            </label>
+
+        </div>
+
+        <div class="col-md-9 col-sm-9 col-xs-12 Padding-RL0">
+
+
+            <table class="table table-striped Margin-T20">
+                <thead>
+                <tr>
+                    <td>Antrenman Adı</td>
+                    <td class="hidden-xs">Tarih</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Boğaziçi Maçı Antrenmanı</td>
+                    <td class="hidden-xs">19 Kasım 2014</td>
+                    <td>
+                        <button class="btn btn-sm">Detay</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Rutin Büyük Saha Antrenmanı</td>
+                    <td class="hidden-xs">28 Kasım 2014</td>
+                    <td>
+                        <button class="btn btn-sm">Detay</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Gençler Birliği Maçı Hazırlık Antrenmanı</td>
+                    <td class="hidden-xs">30 Aralık 2014</td>
+                    <td>
+                        <button class="btn btn-sm">Detay</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Rutin Küçük Saha Antrenmanı</td>
+                    <td class="hidden-xs">05 Ocak 2015</td>
+                    <td>
+                        <button class="btn btn-sm">Detay</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12 Margin-T15 BG-White Padding-RL0">
+        <div class="col-md-12 col-sm-12 col-xs-12 theme-head-title">
+            <h4>Boğaziçi Maçı Antrenmanı</h4>
+        </div>
+        <div style="width:100% max-height:100px">
+            <canvas id="canvas-1" height="100" width="600"></canvas>
+        </div>
+        <script>
+            var randomScalingFactor = function () {
+                return Math.round(Math.random() * 100)
+            };
+            var lineChartData = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    },
+                    {
+                        label: "My Second dataset",
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    }
+                ]
+
+            }
+
+            window.onload = function () {
+                var ctx = document.getElementById("canvas-1").getContext("2d");
+                window.myLine = new Chart(ctx).Line(lineChartData, {
+                    responsive: true
+                });
+            }
+
+
+        </script>
+
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-12 Margin-T15 BG-White Padding-20">
+        <div style="width: 100%">
+            <canvas id="fer" height="200" width="600"></canvas>
+        </div>
+
+
+        <script>
+            var randomScalingFactor = function () {
+                return Math.round(Math.random() * 100)
+            };
+
+            var barChartData = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "rgba(220,220,220,0.75)",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    },
+                    {
+                        fillColor: "rgba(151,187,205,0.5)",
+                        strokeColor: "rgba(151,187,205,0.8)",
+                        highlightFill: "rgba(151,187,205,0.75)",
+                        highlightStroke: "rgba(151,187,205,1)",
+                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    }
+                ]
+
+            }
+            window.onload = function () {
+                var ctx = document.getElementById("fer").getContext("2d");
+                window.myBar = new Chart(ctx).Bar(barChartData, {
+                    responsive: true
+                });
+            }
+
+        </script>
+
+    </div>
+
+
+</div>

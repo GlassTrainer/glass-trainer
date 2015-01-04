@@ -39,10 +39,10 @@ app
 					templateUrl : 'resources/html/partials/view/athlete_create.html'
 				})
 				.when(
-				'/customer/details/:id',
+				'/athlete/:id',
 				{
-					controller : 'CustomerController',
-					templateUrl : 'resources/html/partials/view/customer_details.html'
+					controller : 'AthleteController',
+					templateUrl : 'resources/html/partials/view/athlete_detail.html'
 				})
 				.when(
 				'/login',

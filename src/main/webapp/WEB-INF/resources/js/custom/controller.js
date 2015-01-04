@@ -45,7 +45,7 @@ app.controller('MainController', function ($rootScope, $scope, $location) {
     };
 });
 
-app.controller('AthleteController', function ($scope, $log, AthleteService) {
+app.controller('AthleteController', function ($scope, $log, AthleteService, $routeParams) {
 
     $scope.allAcc = function () {
         AthleteService.allAthletes().then(function (response) {
@@ -67,17 +67,6 @@ app.controller('AthleteController', function ($scope, $log, AthleteService) {
 
         $log.debug("Athlete:" + $scope.newAthlete);
 
-        /*$scope.newAthlete = newAthlete;
-
-
-        var emptyNewAthleteForm = {
-            firstname: "",
-            lastname: "",
-            email: "",
-            password: "",
-            weight: "",
-            height: ""
-        };*/
 
         AthleteService.createAthlete($scope.newAthlete).then(function (response) {
             if (response) {
@@ -99,11 +88,14 @@ app.controller('AthleteController', function ($scope, $log, AthleteService) {
             height: ""
         }
 
-        //$scope.emptyNewAthleteForm.$setPristine();
-        //$scope.newAthlete = emptyNewAthleteForm;
-
     };
 
+    $scope.athleteDetails = function(){
+        var currentId = $routeParams.id;
+        AthleteService.getAthleteDetails(currentId).then (function(response) {
+            $scope.athlete = response;
+        })
+    };
 });
 
 app.controller('CustomerController', function ($scope, CustomerService, $routeParams) {

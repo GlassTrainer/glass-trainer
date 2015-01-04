@@ -17,8 +17,8 @@ public class AthleteService {
     @Autowired
     AhtleteDAO athleteDAO;
 
-    public Athlete getById() {
-        return athleteDAO.getById();
+    public Athlete getAthleteById(Long id) {
+        return athleteDAO.getById(id);
     }
 
     public Athlete create(Athlete athlete) {

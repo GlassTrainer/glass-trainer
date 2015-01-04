@@ -24,9 +24,8 @@ public class AhtleteDAO {
     @PersistenceContext
     EntityManager em;
 
-    public Athlete getById(){
-
-        return em.find(Athlete.class, 5l);
+    public Athlete getById(Long id){
+        return em.find(Athlete.class, id);
     }
 
     public Athlete create(Athlete athlete) {

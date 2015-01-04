@@ -3,10 +3,8 @@ package com.glasstrainer.api.controller;
 import com.glasstrainer.entity.Athlete;
 import com.glasstrainer.service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,20 +19,21 @@ public class AthleteController {
     @Autowired
     AthleteService athleteService;
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = "application/json")
     public void createAthlete(@RequestBody Athlete athlete) {
-        System.out.println("Athlete: " + athlete.toString());
-        System.out.println("Username: " + athlete.getUsername());
-        System.out.println("Athlete pass: " + athlete.getPassword());
         athleteService.create(athlete);
     }
 
-    @RequestMapping(value = "/5", method = RequestMethod.GET,  produces = "application/json")
-    public Athlete getByAthlete() {
-        return athleteService.getById();
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Athlete getAthleteById(@PathVariable Long id) {
+
+        return athleteService.getAthleteById(id);
     }
 
-    @RequestMapping(value="/all", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Athlete> getAll() {
         return athleteService.getAll();
     }

@@ -19,6 +19,16 @@ app.service('AthleteService', function($http, $q) {
         return d.promise;
     }
 
+    this.getAthleteDetails = function(id){
+        var d = $q.defer();
+
+        $http.get('api/athlete/' + id).success(function(response) {
+            d.resolve(response);
+        });
+
+        return d.promise;
+    };
+
 });
 
 
