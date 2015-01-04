@@ -1,0 +1,140 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-fixed-top theme-navbar" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar icon-bar1"></span>
+                <span class="icon-bar icon-bar2"></span>
+                <span class="icon-bar icon-bar3"></span>
+            </button>
+            <a class="navbar-brand" href="#/">
+                <img src="resources/css/custom/img/logo.png" alt="Logo">
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav Margin-T8">
+                <li><a data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')"
+                       href="#/athletes">Sporcular</a></li>
+                <li><a data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')"
+                       href="#/acceleration">İvme</a></li>
+                <li><a data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')||hasRole('ROLE_ATHLETE')"
+                       href="antrenmanlar.html">ASD</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav Margin-T8 pull-right" data-ng-show="!user">
+                <li><a data-target="#aboutUs" href="" data-toggle="modal">Hakkında</a></li>
+                <li><a data-target="#contactUs" href="" data-toggle="modal">İletişim</a></li>
+                <li><a data-target="#login" href="" data-toggle="modal">Giriş</a></li>
+            </ul>
+
+            <li class="nav-user dropdown Margin-T10  pull-right"
+                data-ng-show="hasRole('ROLE_ADMIN')||hasRole('ROLE_TRAINER')||hasRole('ROLE_ATHLETE')">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+				<span class="theme-user-name-box">ZB<span>
+				<b class="caret pull-right Margin-T20"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="accountSettingsBtn">Hesap Ayarları</a></li>
+                    <li class="divider"></li>
+                    <li><a href="" data-ng-click="logout()">Çıkış</a></li>
+                </ul>
+            </li>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div ng-include src="'resources/html/partials/view/login.html'"></div>
+
+
+<div id="contactUs" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">İletişim</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="ant-name" class="col-sm-4 control-label">Adınız</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="ant-name"
+                                   placeholder="Sporcunun adını giriniz.." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ant-name" class="col-sm-4 control-label">E-Posta Adresi</label>
+
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="ant-name" placeholder="e-posta adresiniz.."
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ant-name" class="col-sm-4 control-label">Konu</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="ant-name" placeholder="" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ant-name" class="col-sm-4 control-label">Mesajınız</label>
+
+                        <div class="col-sm-8">
+                            <textarea class="form-control" row="5">
+
+                            </textarea>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="clear"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-primary">Gönder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="aboutUs" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Proje Hakkında</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+                </p>
+
+                <div class="clear"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>

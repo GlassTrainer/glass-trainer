@@ -1,0 +1,44 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<global-method-security pre-post-annotations="enabled" />
+
+	<!-- hasRole([role]) Returns true if the current principal has the specified 
+		role. hasAnyRole([role1,role2]) Returns true if the current principal has 
+		any of the supplied roles (given as a comma-separated list of strings) principal 
+		Allows direct access to the principal object representing the current user 
+		authentication Allows direct access to the current Authentication object 
+		obtained from the SecurityContext permitAll Always evaluates to true denyAll 
+		Always evaluates to false isAnonymous() Returns true if the current principal 
+		is an anonymous user isRememberMe() Returns true if the current principal 
+		is a remember-me user isAuthenticated() Returns true if the user is not anonymous 
+		isFullyAuthenticated() Returns true if the user is not an anonymous or a 
+		remember-me user -->
+	<http pattern="/resources/**" security="none" />
+
+	<http use-expressions="true">
+		<http-basic entry-point-ref="unauthorisedEntryPoint" />
+		<intercept-url pattern="/**" access="permitAll" />
+		<logout invalidate-session="true" delete-cookies="JSESSIONID" />
+		<session-management session-fixation-protection="newSession" />
+	</http>
+
+	<authentication-manager alias="authenticationManager">
+		<!-- <authentication-provider user-service-ref="userDao" /> -->
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+
+				users-by-username-query="
+         SELECT USERNAME, PASSWORD, TRUE FROM USER WHERE USERNAME=?;"
+
+				authorities-by-username-query="
+        SELECT u.USERNAME, r.ROLES FROM USER u, USER_ROLES r
+        WHERE u.ID = r.USER_ID AND u.USERNAME=?;" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

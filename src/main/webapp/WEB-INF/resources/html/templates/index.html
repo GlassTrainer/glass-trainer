@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html data-ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="resources/lib/jquery-2.1.1.js"></script>
+
+    <script src="resources/js/angular/angular.js"></script>
+    <script src="resources/js/angular/angular-resource.js"></script>
+    <script src="resources/js/angular/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.min.js"></script>
+
+    <script src="resources/js/bootstrap/bootstrap.js"></script>
+    <script src="resources/js/angular/ui-bootstrap-0.12.0.min.js"></script>
+
+    <script src="resources/js/angular-xeditable/xeditable.js"></script>
+    <script src="resources/js/angular-local-storage/angular-local-storage.js"></script>
+    <script src="resources/js/custom/app.js"></script>
+    <script src="resources/js/custom/config.js"></script>
+    <script src="resources/js/custom/listener.js"></script>
+    <script src="resources/js/custom/directive.js"></script>
+    <script src="resources/js/custom/controller.js"></script>
+    <script src="resources/js/custom/service.js"></script>
+    <script src="resources/js/custom/menu.js"></script>
+
+    <link href="resources/lib/normalize.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/angular-xeditable/xeditable.css">
+
+
+    <link href="resources/css/custom/theme.css" rel="stylesheet">
+    <script src="resources/lib/Chart.js-master/Chart.js"></script>
+
+    <title>Glass Trainer</title>
+
+</head>
+<body data-ng-controller="MainController">
+
+<div ng-include src="'resources/html/partials/common/menu.html'"></div>
+
+<!-- Error -->
+<div ng-include src="'resources/html/partials/common/error.html'"></div>
+
+
+<div data-ng-view></div>
+
+<!-- Footer -->
+<div ng-include src="'resources/html/partials/common/footer.html'"></div>
+</body>
+</html>

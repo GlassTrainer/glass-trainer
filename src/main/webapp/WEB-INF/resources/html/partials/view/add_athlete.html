@@ -1,0 +1,86 @@
+<div id="addAthlete" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Yeni Sporcu Ekle</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" name="emptyNewAthleteForm">
+                    <div class="col-sm-3 Margin-B15">
+                        <img src="resources/images/image-placeholder.jpg" class="img-circle respo-image Margin-B10">
+                        <input type="file" id="myFile">
+                    </div>
+
+                    <div class="col-sm-8 Padding-RL0">
+
+                        <div class="form-group">
+                            <label for="username" class="col-sm-4 control-label">Kullanıcı Adı</label>
+
+                            <div class="col-sm-8">
+                                <input data-ng-model="newAthlete.username" type="text" class="form-control"
+                                       id="username" placeholder="Kullanıcı adı"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ant-name" class="col-sm-4 control-label">Sporcu</label>
+
+                            <div class="col-sm-8">
+                                <input data-ng-model="newAthlete.firstname" type="text" class="form-control"
+                                       id="firstname" placeholder="Adı" required>
+                                <input data-ng-model="newAthlete.surname" type="text" class="form-control"
+                                       id="lastname" placeholder="Soyadı" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label">E-posta</label>
+
+                            <div class="col-sm-8">
+                                <input data-ng-model="newAthlete.email" type="email" class="form-control"
+                                       id="email" placeholder="E-posta adresi" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="col-sm-4 control-label">Password</label>
+
+                            <div class="col-sm-8">
+                                <input data-ng-model="newAthlete.password" type="password" class="form-control"
+                                       id="password" placeholder="Enter your password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ant-name" class="col-sm-4 control-label"></label>
+
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input data-ng-model="newAthlete.weight" type="text" class="form-control"
+                                           id="ant-name" placeholder="Boy" required>
+                                    <span class="input-group-addon">cm</span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input data-ng-model="newAthlete.height" type="text" class="form-control"
+                                           id="ant-name" placeholder="Kilo" required>
+                                    <span class="input-group-addon">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                        <button type="submit" class="btn btn-primary" data-ng-click="createNewAthlete()">
+                            Kaydet
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

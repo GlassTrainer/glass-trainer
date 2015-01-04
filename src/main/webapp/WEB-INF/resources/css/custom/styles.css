@@ -1,0 +1,44 @@
+body {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/*************************
+ *        Layouts        *
+ ************************/ 
+
+div.menu {
+	padding-bottom:	25px;
+}
+
+div.section {
+	border: 		1px solid black;
+	border-radius: 	15px;
+	padding: 		5px;
+}
+
+div.filter-label {
+	margin-top:  -15px;
+}
+
+div.panel-content {
+	width: 		150px;
+	display:	inline;
+}
+
+div.editable-content {
+    min-height:	40px;
+}
+
+div.inline {
+	display: 		inline-block;
+	margin-right: 	5px;
+}
+
+/*************************
+ *   Bootstrap Enhanced  *
+ ************************/ 
+ 
+ .dropdown {
+ 	cursor:		pointer !important; 
+ }

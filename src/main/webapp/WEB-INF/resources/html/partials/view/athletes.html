@@ -1,0 +1,47 @@
+<div class="container theme-showcase padding-RL0" role="main">
+
+    <div class="col-md-12 col-sm-12 col-xs-12 Margin-T15 Padding-RL0">
+
+        <a data-target="#addAthlete" href="" data-toggle="modal"
+           class="btn btn-primary pull-right addPlayerBtn">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            Yeni Sporcu
+        </a>
+
+    </div>
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12 padding-RL0 BG-White Margin-T15" data-ng-init="allAcc()">
+        <div class="col-md-12 col-sm-12 col-xs-12 theme-head-title">
+            <h4>Tüm Sporcular</h4>
+        </div>
+
+
+        <div class="col-md-4 col-sm-6 col-xs-12 theme-player-list-box" ng-repeat="athlete in athletes">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <img src="resources/images/players-100x/{{athlete.id}}.jpg" class="img-circle respo-image Max-W110">
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <h4>{{athlete.firstname}} {{athlete.surname}}</h4>
+
+                <p>
+                    <span class="theme-player-list-detail">Boy: {{athlete.weight}}</span>
+                    <span class="theme-player-list-detail">Kilo: {{athlete.height}}</span>
+                    <a href="sporcudetay.html" class="btn btn-default btn-xs">
+                        <i class="glyphicon glyphicon-zoom-in"></i>
+                        Detay
+                    </a>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<div ng-include src="'resources/html/partials/view/add_athlete.html'" data-ng-show="hasRole('ROLE_ADMIN')"></div>
+
