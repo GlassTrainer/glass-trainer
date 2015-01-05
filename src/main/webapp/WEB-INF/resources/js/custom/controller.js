@@ -10,9 +10,11 @@ app.controller('MainController', function ($rootScope, $scope, $location, $log) 
         $scope.$emit('event:loginRequest', credentials.username, credentials.password);
         $('#login').modal('toggle');
         $location.path($rootScope.navigateTo);
-
+        credentials.username = "";
+        credentials.password = "";
     };
 
+    // TODO: app comes in this function lots of times...
     $rootScope.hasRole = function (role) {
 
         //var auth = $rootScope.user.authorities;
@@ -22,25 +24,19 @@ app.controller('MainController', function ($rootScope, $scope, $location, $log) 
 
         for (var int = 0; int < $rootScope.user.authorities.length; int++) {
 
-            console.info("Log ", int, " = ",$rootScope.user.authorities[int]);
+            //console.info("Log ", int, " = ",$rootScope.user.authorities[int]);
 
             if ($rootScope.user.authorities[int].authority == role) {
-                console.info("true");
+                //console.info("true");
                 return true;
             }
             else {
-                console.info("false");
+                //console.info("false");
                 return false;
             }
             ;
         }
 
-
-         if ($rootScope.user === undefined) { return false; }
-
-         if ($rootScope.user.authorities[role] === undefined) { return false; }
-
-         if($rootScope.user.authorities.authority == role) return true;
 
         return false;
     };
