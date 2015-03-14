@@ -88,9 +88,9 @@ app.controller('AthleteController', function ($scope, $log, AthleteService, $rou
 
     };
 
-    $scope.athleteDetails = function(){
+    $scope.athleteDetails = function () {
         var currentId = $routeParams.id;
-        AthleteService.getAthleteDetails(currentId).then (function(response) {
+        AthleteService.getAthleteDetails(currentId).then(function (response) {
             $scope.athlete = response;
         })
     };

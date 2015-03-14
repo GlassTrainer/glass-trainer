@@ -1,46 +1,181 @@
-*{list-style:none}
-thead{font-weight:bold; font-size:12px}
-.clear{clear:both;}
-.respo-image{width:100%}
-.Margin-T65{margin-top:65px;}
-.Margin-T20{margin-top:20px;}
-.Margin-T15{margin-top:15px;}
-.Margin-T10{margin-top:10px;}
-.Margin-T8{margin-top: 8px;}
-.Margin-T0{margin-top: 0px!important;}
+* {
+    list-style: none
+}
 
-.Margin-B0{margin-bottom:0!important}
-.Margin-B10{margin-bottom:10px}
-.Margin-B15{margin-bottom:15px}
-.Padding-RL0{padding-right:0px; padding-left:0px}
-.Padding-20{padding:20px;}
-.Margin-T30{margin-top:30px}
-.Margin-T20{margin-top:20px}
-.Width-60{width:60px}
-.BG-White{background:#fff;}
-.Max-W110{max-width:110px}
-.Font-w100{font-weight:100;}
-.TX-Center{text-align:center;}
-.theme-body{background: url(img/bg.png) #eee;}
-.theme-navbar{background:#FFF; min-height: 64px;}
+thead {
+    font-weight: bold;
+    font-size: 12px
+}
 
-.theme-showcase{margin-top:60px;}
-.padding-RL0{padding-right:0px; padding-left:0px;}
+.clear {
+    clear: both;
+}
 
-.theme-head-title{background:#f6f6f6; margin-bottom:10px;}
-.theme-head-title h4{font-size: 16px;line-height: 40px; height: 40px; margin: 0;}
+.respo-image {
+    width: 100%
+}
 
-.theme-player-list-detail{display:block; color:#a0a0a0;line-height: 1.5; font-size: 12px;}
-.theme-player-list-box{margin-bottom: 15px; margin-top: 15px;}
+.Margin-T65 {
+    margin-top: 65px;
+}
+
+.Margin-T20 {
+    margin-top: 20px;
+}
+
+.Margin-T15 {
+    margin-top: 15px;
+}
+
+.Margin-T10 {
+    margin-top: 10px;
+}
+
+.Margin-T8 {
+    margin-top: 8px;
+}
+
+.Margin-T0 {
+    margin-top: 0px !important;
+}
+
+.Margin-B0 {
+    margin-bottom: 0 !important
+}
+
+.Margin-B10 {
+    margin-bottom: 10px
+}
+
+.Margin-B15 {
+    margin-bottom: 15px
+}
+
+.Padding-RL0 {
+    padding-right: 0px;
+    padding-left: 0px
+}
+
+.Padding-20 {
+    padding: 20px;
+}
+
+.Margin-T30 {
+    margin-top: 30px
+}
+
+.Margin-T20 {
+    margin-top: 20px
+}
+
+.Width-60 {
+    width: 60px
+}
+
+.BG-White {
+    background: #fff;
+}
+
+.Max-W110 {
+    max-width: 110px
+}
+
+.Font-w100 {
+    font-weight: 100;
+}
+
+.TX-Center {
+    text-align: center;
+}
+
+.theme-body {
+    background: url(img/bg.png) #eee;
+}
+
+.theme-navbar {
+    background: #FFF;
+    min-height: 64px;
+}
+
+.theme-showcase {
+    margin-top: 60px;
+}
+
+.padding-RL0 {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.theme-head-title {
+    background: #f6f6f6;
+    margin-bottom: 10px;
+}
+
+.theme-head-title h4 {
+    font-size: 16px;
+    line-height: 40px;
+    height: 40px;
+    margin: 0;
+}
+
+.theme-player-list-detail {
+    display: block;
+    color: #a0a0a0;
+    line-height: 1.5;
+    font-size: 12px;
+}
+
+.theme-player-list-box {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
 /*.theme-player-detail-part{padding-top:30px}*/
-.theme-player-detail-image{padding:20px}
-.theme-player-name{font-size:22px;}
+.theme-player-detail-image {
+    padding: 20px
+}
 
-.theme-user-name-box{display:block; width:55px; height:45px; background:#FFF url(../../images/user.png) no-repeat; font-weight:bold; line-height:45px; text-align:center}
-.theme-add-image{width:190px; display:block; margin:0 auto;}
-.theme-footer{font-size:12px; color: #999; padding: 30px 0 60px; background:#FFF; border-top:1px solid #bbb; margin-top:15px;}
-.theme-copyright{color: #555;}
+.theme-player-name {
+    font-size: 22px;
+}
 
-.navbar-toggle .icon-bar1{background:#b74037;}
-.navbar-toggle .icon-bar2{background:#5d85f4;}
-.navbar-toggle .icon-bar3{background:#ebc550;}
+.theme-user-name-box {
+    display: block;
+    width: 55px;
+    height: 45px;
+    background: #FFF url(../../images/user.png) no-repeat;
+    font-weight: bold;
+    line-height: 45px;
+    text-align: center
+}
+
+.theme-add-image {
+    width: 190px;
+    display: block;
+    margin: 0 auto;
+}
+
+.theme-footer {
+    font-size: 12px;
+    color: #999;
+    padding: 30px 0 60px;
+    background: #FFF;
+    border-top: 1px solid #bbb;
+    margin-top: 15px;
+}
+
+.theme-copyright {
+    color: #555;
+}
+
+.navbar-toggle .icon-bar1 {
+    background: #b74037;
+}
+
+.navbar-toggle .icon-bar2 {
+    background: #5d85f4;
+}
+
+.navbar-toggle .icon-bar3 {
+    background: #ebc550;
+}

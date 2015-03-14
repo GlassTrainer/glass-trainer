@@ -1,14 +1,11 @@
 package com.glasstrainer.persistence;
 
-import com.glasstrainer.entity.Acceleration;
 import com.glasstrainer.entity.Athlete;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -24,14 +21,14 @@ public class AhtleteDAO {
     @PersistenceContext
     EntityManager em;
 
-    public Athlete getById(Long id){
+    public Athlete getById(Long id) {
         return em.find(Athlete.class, id);
     }
 
     public Athlete create(Athlete athlete) {
-        try{
+        try {
             em.persist(athlete);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -39,6 +36,6 @@ public class AhtleteDAO {
     }
 
     public List<Athlete> getAll() {
-       return (List<Athlete>) em.createQuery(ALL_ATHLETES).getResultList();
+        return (List<Athlete>) em.createQuery(ALL_ATHLETES).getResultList();
     }
 }

@@ -25,7 +25,7 @@ public class AthleteController {
         athleteService.create(athlete);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     public Athlete getAthleteById(@PathVariable Long id) {
 

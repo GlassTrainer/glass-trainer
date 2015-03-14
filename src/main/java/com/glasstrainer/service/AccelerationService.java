@@ -17,7 +17,7 @@ public class AccelerationService {
     @Autowired
     AccelerationDAO accelerationDAO;
 
-    public List<Acceleration> getCurrentAccelerationData(){
+    public List<Acceleration> getCurrentAccelerationData() {
         return accelerationDAO.getAccelerationData();
     }
 

@@ -1,28 +1,28 @@
-app.service('AthleteService', function($http, $q) {
-    this.createAthlete = function(athlete) {
+app.service('AthleteService', function ($http, $q) {
+    this.createAthlete = function (athlete) {
 
         var d = $q.defer();
 
-        $http.post('api/athlete/create', athlete).success(function(response) {
+        $http.post('api/athlete/create', athlete).success(function (response) {
             d.resolve(athlete);
         });
 
         return d.promise;
     };
 
-    this.allAthletes = function() {
+    this.allAthletes = function () {
         var d = $q.defer();
-        $http.get('api/athlete/all').success(function(response) {
+        $http.get('api/athlete/all').success(function (response) {
             d.resolve(response);
         });
 
         return d.promise;
     }
 
-    this.getAthleteDetails = function(id){
+    this.getAthleteDetails = function (id) {
         var d = $q.defer();
 
-        $http.get('api/athlete/' + id).success(function(response) {
+        $http.get('api/athlete/' + id).success(function (response) {
             d.resolve(response);
         });
 
@@ -32,64 +32,64 @@ app.service('AthleteService', function($http, $q) {
 });
 
 
-app.service('CustomerService', function($http, $q) {
+app.service('CustomerService', function ($http, $q) {
 
-    this.getAccelerationData = function() {
+    this.getAccelerationData = function () {
         var d = $q.defer();
 
-        $http.get('api/acceleration/current').success(function(response) {
+        $http.get('api/acceleration/current').success(function (response) {
             d.resolve(response);
         });
 
         return d.promise;
     }
 
-	this.getCustomers = function() {
-		var d = $q.defer();
-		
-		$http.get('customer/customers/retrieve').success(function(response) {
-			d.resolve(response);
-		});
-		
-		return d.promise;
-	};
-	
-	this.getCustomerDetails = function(id){
-		var d = $q.defer();
-		
-		 $http.get('customer/' + id).success(function(response) {
-	            d.resolve(response);
-	        });
-		 
-		 return d.promise;
-	};
-	
-	
-    this.deleteCustomer = function(id) {
+    this.getCustomers = function () {
         var d = $q.defer();
 
-        $http.delete('customer/delete/' + id).success(function(response) {
+        $http.get('customer/customers/retrieve').success(function (response) {
             d.resolve(response);
         });
 
         return d.promise;
     };
 
-    this.saveCustomer = function(customer) {
+    this.getCustomerDetails = function (id) {
         var d = $q.defer();
 
-        $http.post('customer/save', customer).success(function(response) {
+        $http.get('customer/' + id).success(function (response) {
             d.resolve(response);
         });
 
         return d.promise;
     };
-    
-    this.createCustomer = function(customer) {
-    	
+
+
+    this.deleteCustomer = function (id) {
         var d = $q.defer();
 
-        $http.post('customer/create', customer).success(function(response) {
+        $http.delete('customer/delete/' + id).success(function (response) {
+            d.resolve(response);
+        });
+
+        return d.promise;
+    };
+
+    this.saveCustomer = function (customer) {
+        var d = $q.defer();
+
+        $http.post('customer/save', customer).success(function (response) {
+            d.resolve(response);
+        });
+
+        return d.promise;
+    };
+
+    this.createCustomer = function (customer) {
+
+        var d = $q.defer();
+
+        $http.post('customer/create', customer).success(function (response) {
             d.resolve(response);
         });
 
@@ -97,14 +97,14 @@ app.service('CustomerService', function($http, $q) {
     };
 });
 
-app.service('AuthenticationService', function($http, $q, localStorageService) {
+app.service('AuthenticationService', function ($http, $q, localStorageService) {
     this.login = function () {
         var d = $q.defer();
 
         $http.get('user/authenticated')
             .success(function (user) {
                 localStorageService.set('localStorageUser', user);
-                
+
                 d.resolve();
             })
             .error(function () {
@@ -162,10 +162,10 @@ app.service('Base64Service', function () {
             }
 
             output = output +
-                keyStr.charAt(enc1) +
-                keyStr.charAt(enc2) +
-                keyStr.charAt(enc3) +
-                keyStr.charAt(enc4);
+            keyStr.charAt(enc1) +
+            keyStr.charAt(enc2) +
+            keyStr.charAt(enc3) +
+            keyStr.charAt(enc4);
             chr1 = chr2 = chr3 = "";
             enc1 = enc2 = enc3 = enc4 = "";
         }

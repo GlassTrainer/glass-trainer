@@ -1,6 +1,5 @@
 package com.glasstrainer.api.controller;
 
-import com.glasstrainer.entity.Training;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

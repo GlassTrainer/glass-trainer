@@ -13,32 +13,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/user")
 public class UserController {
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/current", method = RequestMethod.GET, produces = "application/json")
-	public UserDetails getCurrentUserInformation() {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/current", method = RequestMethod.GET, produces = "application/json")
+    public UserDetails getCurrentUserInformation() {
 
 
-		return getUser();
-	}
+        return getUser();
+    }
 
-	@RequestMapping(value = "/authenticated", method = RequestMethod.GET, produces = "application/json")
-	public UserDetails authenticatedUser() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    @RequestMapping(value = "/authenticated", method = RequestMethod.GET, produces = "application/json")
+    public UserDetails authenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		if(authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
-			return null;
-		}
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
+            return null;
+        }
 
-		return (UserDetails)authentication.getPrincipal();
-	}
+        return (UserDetails) authentication.getPrincipal();
+    }
 
-	private UserDetails getUser() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    private UserDetails getUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		if(authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
-			return null;
-		}
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
+            return null;
+        }
 
-		return (UserDetails)authentication.getPrincipal();
-	}
+        return (UserDetails) authentication.getPrincipal();
+    }
 }

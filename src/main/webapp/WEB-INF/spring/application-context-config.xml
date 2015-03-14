@@ -37,8 +37,4 @@
 	  	</property>
 		<property name="cacheSeconds" value="0" />
 	</bean>
-
-	 <!--<bean id="userDao" class="au.com.example.persistence.dao.user.UserDaoImp"></bean>-->
-    <!--<bean id="userInfoService" class="au.com.example.service.user.UserInformationServiceImp"></bean>-->
-	
 </beans>

@@ -1,117 +1,116 @@
 app
-	.config([
-		'$routeProvider',
-		'$httpProvider',
-		'localStorageServiceProvider',
-		function($routeProvider, $httpProvider,
-				 localStorageServiceProvider) {
+    .config([
+        '$routeProvider',
+        '$httpProvider',
+        'localStorageServiceProvider',
+        function ($routeProvider, $httpProvider,
+                  localStorageServiceProvider) {
 
-			// ======= local storage configuration ========
+            // ======= local storage configuration ========
 
-			localStorageServiceProvider.prefix = 'example';
+            localStorageServiceProvider.prefix = 'example';
 
-			// ======= router configuration =============
+            // ======= router configuration =============
 
-			$routeProvider
-				.when(
-				'/main',
-				{
-					templateUrl : 'resources/html/partials/view/main.html'
-				})
-				.when(
-				'/athletes',
-				{
-					controller : 'AthleteController',
-					templateUrl : 'resources/html/partials/view/athletes.html'
+            $routeProvider
+                .when(
+                '/main',
+                {
+                    templateUrl: 'resources/html/partials/view/main.html'
+                })
+                .when(
+                '/athletes',
+                {
+                    controller: 'AthleteController',
+                    templateUrl: 'resources/html/partials/view/athletes.html'
 
-				})
-				.when(
-				'/acceleration',
-				{
-					controller : 'CustomerController',
-					templateUrl : 'resources/html/partials/view/acceleration.html'
+                })
+                .when(
+                '/acceleration',
+                {
+                    controller: 'CustomerController',
+                    templateUrl: 'resources/html/partials/view/acceleration.html'
 
-				})
-				.when(
-				'/athlete/create',
-				{
-					controller : 'AthleteController',
-					templateUrl : 'resources/html/partials/view/athlete_create.html'
-				})
-				.when(
-				'/athlete/:id',
-				{
-					controller : 'AthleteController',
-					templateUrl : 'resources/html/partials/view/athlete_detail.html'
-				})
-/*				.when(
-				'/login',
-				{
-					templateUrl : 'resources/html/partials/view/login.html'
-				})*/
-				.otherwise({
-					redirectTo : "/main"
-				});
+                })
+                .when(
+                '/athlete/create',
+                {
+                    controller: 'AthleteController',
+                    templateUrl: 'resources/html/partials/view/athlete_create.html'
+                })
+                .when(
+                '/athlete/:id',
+                {
+                    controller: 'AthleteController',
+                    templateUrl: 'resources/html/partials/view/athlete_detail.html'
+                })
+                /*				.when(
+                 '/login',
+                 {
+                 templateUrl : 'resources/html/partials/view/login.html'
+                 })*/
+                .otherwise({
+                    redirectTo: "/main"
+                });
 
-			// ======== http configuration ===============
+            // ======== http configuration ===============
 
-			// configure $http to view a login whenever a 401
-			// unauthorized response arrives
-			$httpProvider.responseInterceptors
-				.push(function($rootScope, $q, $location) {
-					return function(promise) {
-						return promise
-							.then(
-							// success -> don't
-							// intercept
-							function(response) {
-								return response;
-							},
-							// error -> if 401 save the
-							// request and broadcast an
-							// event
-							function(response) {
-								if (response.status === 401) {
-									var deferred = $q
-										.defer(), req = {
-										config : response.config,
-										deferred : deferred
-									};
+            // configure $http to view a login whenever a 401
+            // unauthorized response arrives
+            $httpProvider.responseInterceptors
+                .push(function ($rootScope, $q, $location) {
+                    return function (promise) {
+                        return promise
+                            .then(
+                            // success -> don't
+                            // intercept
+                            function (response) {
+                                return response;
+                            },
+                            // error -> if 401 save the
+                            // request and broadcast an
+                            // event
+                            function (response) {
+                                if (response.status === 401) {
+                                    var deferred = $q
+                                        .defer(), req = {
+                                        config: response.config,
+                                        deferred: deferred
+                                    };
 
-									$httpProvider.defaults.headers.common.Authorization = null;
+                                    $httpProvider.defaults.headers.common.Authorization = null;
 
-									$rootScope.requests401
-										.push(req);
-									$rootScope
-										.$broadcast('event:loginRequired');
+                                    $rootScope.requests401
+                                        .push(req);
+                                    $rootScope
+                                        .$broadcast('event:loginRequired');
 
-									return deferred.promise;
-								}
-								// if error is
-								// authorization related
-								if (response.status == 403) {
-									$location
-										.path("/main");
+                                    return deferred.promise;
+                                }
+                                // if error is
+                                // authorization related
+                                if (response.status == 403) {
+                                    $location
+                                        .path("/main");
 
 
-									var deferred =
-										$q.defer(), req = {
-										config:
-											response.config,
-										deferred:
-											deferred };
+                                    var deferred =
+                                        $q.defer(), req = {
+                                        config: response.config,
+                                        deferred: deferred
+                                    };
 
-									$rootScope.requests403.push(req);
-									$rootScope.$broadcast('event:noAuthorization');
+                                    $rootScope.requests403.push(req);
+                                    $rootScope.$broadcast('event:noAuthorization');
 
-									return
-									deferred.promise;
+                                    return
+                                    deferred.promise;
 
-								}
+                                }
 
-								return $q
-									.reject(response);
-							});
-					};
-				});
-		} ]);
+                                return $q
+                                    .reject(response);
+                            });
+                    };
+                });
+        }]);

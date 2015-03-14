@@ -1,81 +1,72 @@
 /**
- * 
+ *
  */
 package com.glasstrainer.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-import java.util.Map;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * @author Serhat CAN
- *
  */
 
 @Entity
 public class Gps implements Serializable {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	/*
-	 * This is the current time coming from GPS
-	 */
-	private Time gpsTime;
+    /*
+     * This is the current time coming from GPS
+     */
+    private Time gpsTime;
 
-	@Column(length = 10)
-	private Double xCoordinate;
+    @Column(length = 10)
+    private Double xCoordinate;
 
-	private Double yCoordinate;
+    private Double yCoordinate;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created", nullable = false, updatable = false)
-	private Date created;
-	
-	
-	// Getters and Setters
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created", nullable = false, updatable = false)
+    private Date created;
 
-	public Date getTime() {
-		return created;
-	}
 
-	@PrePersist
-	protected void setTime() {
-		created = new Date();
-	}
+    // Getters and Setters
 
-	public Time getGpsTime() {
-		return gpsTime;
-	}
+    public Date getTime() {
+        return created;
+    }
 
-	public void setTime(Time gpsTime) {
-		this.gpsTime = gpsTime;
-	}
+    @PrePersist
+    protected void setTime() {
+        created = new Date();
+    }
 
-	public Double getxCoordinate() {
-		return xCoordinate;
-	}
+    public Time getGpsTime() {
+        return gpsTime;
+    }
 
-	public void setxCoordinate(Double xCoordinate) {
-		this.xCoordinate = xCoordinate;
-	}
+    public void setTime(Time gpsTime) {
+        this.gpsTime = gpsTime;
+    }
 
-	public Double getyCoordinate() {
-		return yCoordinate;
-	}
+    public Double getxCoordinate() {
+        return xCoordinate;
+    }
 
-	public void setyCoordinate(Double yCoordinate) {
-		this.yCoordinate = yCoordinate;
-	}
+    public void setxCoordinate(Double xCoordinate) {
+        this.xCoordinate = xCoordinate;
+    }
+
+    public Double getyCoordinate() {
+        return yCoordinate;
+    }
+
+    public void setyCoordinate(Double yCoordinate) {
+        this.yCoordinate = yCoordinate;
+    }
 
 }

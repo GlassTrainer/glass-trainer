@@ -1,81 +1,85 @@
 <div>
-	<div>
-		<h2>Acceleration Report</h2>
-	</div>
+    <div>
+        <h2>Acceleration Report</h2>
+    </div>
 
-	<div class="content">
-		Your train expert. Watch your athlete's in real time.
-	</div>
+    <div class="content">
+        Your train expert. Watch your athlete's in real time.
+    </div>
 
-	<!--id: 2301,-->
-	<!--athlete: {-->
-	<!--id: 1,-->
-	<!--tcNo: 207331557178,-->
-	<!--fname: "Serhat",-->
-	<!--lname: "CAN",-->
-	<!--weight: 86.2,-->
-	<!--size: 181-->
-	<!--},-->
-	<!--cx: "0.023",-->
-	<!--cy: "0.037",-->
-	<!--cz: "1.002",-->
-	<!--time: 1414785286000-->
+    <!--id: 2301,-->
+    <!--athlete: {-->
+    <!--id: 1,-->
+    <!--tcNo: 207331557178,-->
+    <!--fname: "Serhat",-->
+    <!--lname: "CAN",-->
+    <!--weight: 86.2,-->
+    <!--size: 181-->
+    <!--},-->
+    <!--cx: "0.023",-->
+    <!--cy: "0.037",-->
+    <!--cz: "1.002",-->
+    <!--time: 1414785286000-->
 </div>
 
 <div class="filter">
-	<div class="navbar navbar-default">
-		<div class="navbar-header">
-			<a class="navbar-brand">Filter</a>
-		</div>
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand">Filter</a>
+        </div>
 
-		<div class="navbar-form navbar-left">
-			<div class="input-group">
-				<input type="text" class="form-control"
-					   data-ng-model="search.athlete.fname"
-					   placeholder="Filter by first name"/>
-			</div>
-		</div>
-	</div>
+        <div class="navbar-form navbar-left">
+            <div class="input-group">
+                <input type="text" class="form-control"
+                       data-ng-model="search.athlete.fname"
+                       placeholder="Filter by first name"/>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="filter-label">
-	<b>Filtering by: {{ search.firstname }}</b>
+    <b>Filtering by: {{ search.firstname }}</b>
 </div>
 
 <br/>
 
 <div class="panel-content" data-ng-init="accelerationData()">
-	<div id="{{data.id}}" style="min-width: 300px;"
-		 class="panel panel-primary inline"
-		 data-ng-repeat="item in accelerations | filter:search:strict | orderBy:'time'">
-		<form editable-form name="editableForm"
-			  onaftersave="save(item.id)">
-			<div class="panel-heading clearfix">
-				<div class="panel-title pull-left"><a href="#/item/details/{{item.id}}">
-					<b>{{ item.id }}</b></a>
-				</div>
-			</div>
-			<div class="panel-body clearfix"><a ng-click="$scope.accelerationToggle = !$scope.accelerationToggle ">
-				<b>Athlete:</b> <div class="editable-content">{{ item.athlete.firstname }}&nbsp;{{ item.athlete.surname }}</div></a>
-				<div ng-show="$scope.accelerationToggle">
-					<div><b>Email: </b>{{ item.athlete.email }}</div>
-					<div>Weight: {{ item.athlete.weight }}</div>
-					<div>Size: {{ item.athlete.size }}</div>
-				</div>
-				<div>
-					<b>X-axis: </b>{{ item.cx }}
-				</div>
-				<div>
-					<b>Y-axis: </b>{{ item.cy }}
-				</div>
-				<div>
-					<b>Z-axis: </b>{{ item.cz }}
-				</div>
-				<div>
-					<b>Record Time: </b>{{item.time | date:"MM/dd/yyyy 'at' h:mm:ssa"}}
-				</div>
-			</div>
-		</form>
-	</div>
+    <div id="{{data.id}}" style="min-width: 300px;"
+         class="panel panel-primary inline"
+         data-ng-repeat="item in accelerations | filter:search:strict | orderBy:'time'">
+        <form editable-form name="editableForm"
+              onaftersave="save(item.id)">
+            <div class="panel-heading clearfix">
+                <div class="panel-title pull-left"><a href="#/item/details/{{item.id}}">
+                    <b>{{ item.id }}</b></a>
+                </div>
+            </div>
+            <div class="panel-body clearfix"><a ng-click="$scope.accelerationToggle = !$scope.accelerationToggle ">
+                <b>Athlete:</b>
+
+                <div class="editable-content">{{ item.athlete.firstname }}&nbsp;{{ item.athlete.surname }}</div>
+            </a>
+
+                <div ng-show="$scope.accelerationToggle">
+                    <div><b>Email: </b>{{ item.athlete.email }}</div>
+                    <div>Weight: {{ item.athlete.weight }}</div>
+                    <div>Size: {{ item.athlete.size }}</div>
+                </div>
+                <div>
+                    <b>X-axis: </b>{{ item.cx }}
+                </div>
+                <div>
+                    <b>Y-axis: </b>{{ item.cy }}
+                </div>
+                <div>
+                    <b>Z-axis: </b>{{ item.cz }}
+                </div>
+                <div>
+                    <b>Record Time: </b>{{item.time | date:"MM/dd/yyyy 'at' h:mm:ssa"}}
+                </div>
+            </div>
+        </form>
+    </div>
 
 </div>
