@@ -3,8 +3,17 @@ app
         '$routeProvider',
         '$httpProvider',
         'localStorageServiceProvider',
+        'uiGmapGoogleMapApiProvider',
         function ($routeProvider, $httpProvider,
-                  localStorageServiceProvider) {
+                  localStorageServiceProvider, uiGmapGoogleMapApiProvider) {
+
+            // ======= Google Maps configuration ========
+
+            uiGmapGoogleMapApiProvider.configure({
+                key: 'AIzaSyCHbcTNWIoU52ZTZbSrQyJPXeIwt2K4xmQ',
+                v: '3.17',
+                libraries: 'weather,geometry,visualization'
+            });
 
             // ======= local storage configuration ========
 

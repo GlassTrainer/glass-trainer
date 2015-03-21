@@ -1,3 +1,19 @@
+<ui-gmap-google-map center='map.center' draggable="true" options="options" zoom='map.zoom' bounds="map.bounds">
+    <ui-gmap-polyline ng-repeat="p in polylines"
+                      path="p.path"
+                      stroke="p.stroke"
+                      visible='p.visible'
+                      geodesic='p.geodesic'
+                      fit="false"
+                      editable="p.editable"
+                      draggable="p.draggable">
+    </ui-gmap-polyline>
+</ui-gmap-google-map>
+
+<div><span>GPS Data File Upload</span>
+    <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</div>
+</div>
+
 <div class="container theme-showcase padding-RL0 theme-player-detail-part" role="main"
      data-ng-init="athleteDetails()">
     <div class="col-md-12 col-sm-12 col-xs-12 BG-White  Margin-T30">
@@ -108,7 +124,7 @@
                     }
                 ]
 
-            }
+            };
 
             window.onload = function () {
                 var ctx = document.getElementById("canvas-1").getContext("2d");
@@ -152,7 +168,7 @@
                     }
                 ]
 
-            }
+            };
             window.onload = function () {
                 var ctx = document.getElementById("fer").getContext("2d");
                 window.myBar = new Chart(ctx).Bar(barChartData, {

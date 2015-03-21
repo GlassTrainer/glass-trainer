@@ -23,8 +23,8 @@ public class Acceleration implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
-    private Athlete athlete;
+    @ManyToOne
+    private User user;
 
     private String cx;
     private String cy;
@@ -90,12 +90,12 @@ public class Acceleration implements Serializable {
         this.cz = cz;
     }
 
-    public Athlete getAthlete() {
-        return athlete;
+    public User getUser() {
+        return user;
     }
 
-    public void setAthlete(Athlete athlete) {
-        this.athlete = athlete;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public double getResultantAcceleration() {

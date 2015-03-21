@@ -48,8 +48,8 @@ public class User implements Serializable, UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<Role>();
 
-    protected User() {
-        /* Reflection instantiation */
+    public User() {
+
     }
 
     public User(String name, String passwordHash) {
@@ -57,14 +57,14 @@ public class User implements Serializable, UserDetails {
         this.password = passwordHash;
     }
 
-/*	public User(String name, String passwordHash, String email, String firstname, String surname, Role role) {
+	public User(String name, String passwordHash, String email, String firstname, String surname, Role role) {
 		this.username = name;
 		this.password = passwordHash;
 		this.email = email;
 		this.firstname = firstname;
 		this.surname = surname;
 		this.addRole(role);
-	}*/
+	}
 
 
     public Long getId() {

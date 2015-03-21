@@ -43,7 +43,7 @@ app.controller('MainController', function ($rootScope, $scope, $location, $log) 
 
 });
 
-app.controller('AthleteController', function ($scope, $log, AthleteService, $routeParams) {
+app.controller('AthleteController', function ($scope, $log, $routeParams, $upload, AthleteService) {
 
     $scope.allAcc = function () {
         AthleteService.allAthletes().then(function (response) {
@@ -59,7 +59,7 @@ app.controller('AthleteController', function ($scope, $log, AthleteService, $rou
         password: "",
         weight: "",
         height: ""
-    }
+    };
 
     $scope.createNewAthlete = function () {
 
@@ -94,6 +94,58 @@ app.controller('AthleteController', function ($scope, $log, AthleteService, $rou
             $scope.athlete = response;
         })
     };
+
+    //$scope.map = { center: { latitude: 39, longitude: 32 }, zoom: 7 };
+    $scope.map = {center: {latitude: 39.9013, longitude: 32.7741 }, zoom: 19, bounds: {}};
+    $scope.polylines = [
+        {
+            id: 1,
+            path: [
+                {   latitude: 39.90149, longitude: 32.7740438333 },
+                {   latitude: 39.90145666666667, longitude: 32.77412 },
+                {   latitude: 39.90134, longitude: 32.774212 },
+                {   latitude: 39.90130166666667, longitude: 32.774245 },
+                {   latitude: 39.901273333333336, longitude: 32.77430 },
+                {   latitude: 39.90124, longitude: 32.77432 },
+            ],
+            stroke: {
+                color: '#6060FB',
+                weight: 3
+            },
+            editable: true,
+            draggable: true,
+            geodesic: true,
+            visible: true
+        }
+    ];
+
+    $scope.upload = function (files) {
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                $upload.upload({
+                    url: '/api/athlete/upload-file',
+                    fields: {
+                        'username': $scope.athlete.username
+                    },
+                    file: file
+                }).progress(function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ' +
+                    evt.config.file.name);
+                }).success(function (data, status, headers, config) {
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' +
+                    JSON.stringify(data));
+
+                    $log.debug("GPS data debugging.......");
+                    $log.debug(data);
+                    $log.debug(status);
+                    $log.debug(headers);
+                });
+            }
+        }
+    };
+
 });
 
 app.controller('CustomerController', function ($scope, CustomerService, $routeParams) {

@@ -1,1 +1,2 @@
-var app = angular.module('app', ['ngRoute', 'xeditable', 'LocalStorageModule']);
+var app = angular.module('app', ['ngRoute', 'xeditable', 'LocalStorageModule',
+    'uiGmapgoogle-maps', 'angularFileUpload']);

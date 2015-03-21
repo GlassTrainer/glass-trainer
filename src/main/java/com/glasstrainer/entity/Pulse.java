@@ -18,11 +18,20 @@ public class Pulse implements Serializable {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne
+    User user;
+
+    @Column(nullable = false)
     private String rate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", nullable = false, updatable = false)
     private Date created;
+
+    public Pulse(User user, String rate) {
+        this.user = user;
+        this.rate = rate;
+    }
 
     // Getters and Setters
 

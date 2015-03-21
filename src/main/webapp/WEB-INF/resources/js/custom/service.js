@@ -17,7 +17,7 @@ app.service('AthleteService', function ($http, $q) {
         });
 
         return d.promise;
-    }
+    };
 
     this.getAthleteDetails = function (id) {
         var d = $q.defer();
@@ -42,7 +42,7 @@ app.service('CustomerService', function ($http, $q) {
         });
 
         return d.promise;
-    }
+    };
 
     this.getCustomers = function () {
         var d = $q.defer();

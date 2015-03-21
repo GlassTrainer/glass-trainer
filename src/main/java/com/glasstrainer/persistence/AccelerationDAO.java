@@ -25,7 +25,7 @@ public class AccelerationDAO {
 
     public List<Acceleration> getAccelerationData() {
         Query query = em.createQuery(RECENT_ACCELERATION);
-        query.setMaxResults(1);
+        query.setMaxResults(10);
 //        List<Acceleration> accelerations = query.getResultList();
         return query.getResultList();
     }

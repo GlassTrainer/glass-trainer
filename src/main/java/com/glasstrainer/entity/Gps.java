@@ -24,15 +24,34 @@ public class Gps implements Serializable {
      */
     private Time gpsTime;
 
-    @Column(length = 10)
-    private Double xCoordinate;
+    @Column(nullable = false, precision = 6)
+    private Double latitude;
 
-    private Double yCoordinate;
+    @Column(nullable = false, precision = 6)
+    private Double longitude;
+
+    @ManyToOne
+    private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", nullable = false, updatable = false)
     private Date created;
 
+    public Gps() {
+    }
+
+    public Gps(User user, Double latitude, Double longitude) {
+        this.user = user;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Gps(User user, Double latitude, Double longitude, Time gpsTime) {
+        this.user = user;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.gpsTime = gpsTime;
+    }
 
     // Getters and Setters
 
@@ -53,20 +72,27 @@ public class Gps implements Serializable {
         this.gpsTime = gpsTime;
     }
 
-    public Double getxCoordinate() {
-        return xCoordinate;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setxCoordinate(Double xCoordinate) {
-        this.xCoordinate = xCoordinate;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
-    public Double getyCoordinate() {
-        return yCoordinate;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public void setyCoordinate(Double yCoordinate) {
-        this.yCoordinate = yCoordinate;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

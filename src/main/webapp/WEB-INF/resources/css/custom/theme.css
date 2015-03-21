@@ -179,3 +179,5 @@ thead {
 .navbar-toggle .icon-bar3 {
     background: #ebc550;
 }
+
+.angular-google-map-container { height: 400px; }

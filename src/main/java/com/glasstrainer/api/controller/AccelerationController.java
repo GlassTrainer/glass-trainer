@@ -1,7 +1,7 @@
 package com.glasstrainer.api.controller;
 
 import com.glasstrainer.entity.Acceleration;
-import com.glasstrainer.entity.Athlete;
+import com.glasstrainer.entity.User;
 import com.glasstrainer.entity.Pulse;
 import com.glasstrainer.service.AccelerationService;
 import com.glasstrainer.service.PulseService;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Created by Serhat CAN on 07.12.2014.
@@ -38,20 +39,20 @@ public class AccelerationController {
         for (Acceleration acceleration : accelerations) {
             result.put("acceleration", String.valueOf(acceleration.getResultantAcceleration()));
 
-            Athlete athlete = new Athlete();
-            athlete.setEmail("can.srht@gmail.com");
-            athlete.setFirstname("Serhat");
-            athlete.setSurname("CAN");
+            User user = new User();
+            user.setEmail("can.srht@gmail.com");
+            user.setFirstname("Serhat");
+            user.setSurname("CAN");
 
-            acceleration.setAthlete(athlete);
+            acceleration.setUser(user);
 
-            if(acceleration.getAthlete() != null) {
-                if(acceleration.getAthlete().getFirstname() != null) {
-                    result.put("firstname", acceleration.getAthlete().getFirstname());
+            if(acceleration.getUser() != null) {
+                if(acceleration.getUser().getFirstname() != null) {
+                    result.put("firstname", acceleration.getUser().getFirstname());
                 }
 
-                if(acceleration.getAthlete().getSurname() != null) {
-                    result.put("lastname", acceleration.getAthlete().getSurname());
+                if(acceleration.getUser().getSurname() != null) {
+                    result.put("lastname", acceleration.getUser().getSurname());
                 }
             }
         }
