@@ -3,7 +3,7 @@ app.service('AthleteService', function ($http, $q) {
 
         var d = $q.defer();
 
-        $http.post('api/athlete/create', athlete).success(function (response) {
+        $http.post('"api/user/create', athlete).success(function (response) {
             d.resolve(athlete);
         });
 
@@ -12,7 +12,7 @@ app.service('AthleteService', function ($http, $q) {
 
     this.allAthletes = function () {
         var d = $q.defer();
-        $http.get('api/athlete/all').success(function (response) {
+        $http.get('api/user/all').success(function (response) {
             d.resolve(response);
         });
 
@@ -22,17 +22,12 @@ app.service('AthleteService', function ($http, $q) {
     this.getAthleteDetails = function (id) {
         var d = $q.defer();
 
-        $http.get('api/athlete/' + id).success(function (response) {
+        $http.get('api/user/' + id).success(function (response) {
             d.resolve(response);
         });
 
         return d.promise;
     };
-
-});
-
-
-app.service('CustomerService', function ($http, $q) {
 
     this.getAccelerationData = function () {
         var d = $q.defer();
@@ -44,64 +39,24 @@ app.service('CustomerService', function ($http, $q) {
         return d.promise;
     };
 
-    this.getCustomers = function () {
+    this.getGpsData = function () {
         var d = $q.defer();
 
-        $http.get('customer/customers/retrieve').success(function (response) {
+        $http.get('api/user/gps').success(function (response) {
             d.resolve(response);
         });
 
         return d.promise;
-    };
 
-    this.getCustomerDetails = function (id) {
-        var d = $q.defer();
+    }
 
-        $http.get('customer/' + id).success(function (response) {
-            d.resolve(response);
-        });
-
-        return d.promise;
-    };
-
-
-    this.deleteCustomer = function (id) {
-        var d = $q.defer();
-
-        $http.delete('customer/delete/' + id).success(function (response) {
-            d.resolve(response);
-        });
-
-        return d.promise;
-    };
-
-    this.saveCustomer = function (customer) {
-        var d = $q.defer();
-
-        $http.post('customer/save', customer).success(function (response) {
-            d.resolve(response);
-        });
-
-        return d.promise;
-    };
-
-    this.createCustomer = function (customer) {
-
-        var d = $q.defer();
-
-        $http.post('customer/create', customer).success(function (response) {
-            d.resolve(response);
-        });
-
-        return d.promise;
-    };
 });
 
 app.service('AuthenticationService', function ($http, $q, localStorageService) {
     this.login = function () {
         var d = $q.defer();
 
-        $http.get('user/authenticated')
+        $http.get('api/user/authenticated')
             .success(function (user) {
                 localStorageService.set('localStorageUser', user);
 

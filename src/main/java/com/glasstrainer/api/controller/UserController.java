@@ -24,12 +24,11 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/api/user")
 public class UserController {
 
     @Autowired
     UserService userService;
-
 
     @Autowired
     GpsService gpsService;
@@ -66,16 +65,20 @@ public class UserController {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
                 gpsList = GpsDataParser.parse(userService.getCurrentUser(), bufferedReader);
+                gpsService.createList(gpsList);
+                System.out.println("GPS Array Data Length: " + gpsList.size());
 
-                gpsService.create(gpsList);
-                System.out.println(gpsList);
 
             }
 
-            System.out.println(String.format("receive %s from %s", file.getOriginalFilename(), username));
-
             return gpsList;
         }
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/gps", method = RequestMethod.GET)
+    public List<Gps> gpsData() {
+        return gpsService.getAllGps();
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

@@ -95,19 +95,21 @@ app.controller('AthleteController', function ($scope, $log, $routeParams, $uploa
         })
     };
 
+    $scope.accelerationToggle = false;
+
+    $scope.accelerationData = function () {
+        AthleteService.getAccelerationData().then(function (response) {
+            $scope.accelerations = response;
+        })
+    };
+
     //$scope.map = { center: { latitude: 39, longitude: 32 }, zoom: 7 };
-    $scope.map = {center: {latitude: 39.9013, longitude: 32.7741 }, zoom: 19, bounds: {}};
+    $scope.map = { center: {latitude: 39, longitude: 32}, zoom: 14};
+
     $scope.polylines = [
         {
             id: 1,
-            path: [
-                {   latitude: 39.90149, longitude: 32.7740438333 },
-                {   latitude: 39.90145666666667, longitude: 32.77412 },
-                {   latitude: 39.90134, longitude: 32.774212 },
-                {   latitude: 39.90130166666667, longitude: 32.774245 },
-                {   latitude: 39.901273333333336, longitude: 32.77430 },
-                {   latitude: 39.90124, longitude: 32.77432 },
-            ],
+            path: [],
             stroke: {
                 color: '#6060FB',
                 weight: 3
@@ -119,12 +121,27 @@ app.controller('AthleteController', function ($scope, $log, $routeParams, $uploa
         }
     ];
 
+    AthleteService.getGpsData().then(function (response) {
+
+        //$log.debug(response);
+        $scope.gpsData = response;
+        $scope.map.center.latitude = $scope.gpsData[0].latitude;
+        $scope.map.center.longitude = $scope.gpsData[0].longitude;
+
+        for(var i = 0; i<$scope.gpsData.length; i++) {
+            var g = { latitude : $scope.gpsData[i].latitude,
+                longitude : $scope.gpsData[i].longitude };
+            $scope.polylines[0].path.push(g) ;
+        }
+    });
+
+
     $scope.upload = function (files) {
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 $upload.upload({
-                    url: '/api/athlete/upload-file',
+                    url: '/api/user/upload-file',
                     fields: {
                         'username': $scope.athlete.username
                     },
@@ -134,89 +151,14 @@ app.controller('AthleteController', function ($scope, $log, $routeParams, $uploa
                     console.log('progress: ' + progressPercentage + '% ' +
                     evt.config.file.name);
                 }).success(function (data, status, headers, config) {
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' +
-                    JSON.stringify(data));
+                    /*console.log('file ' + config.file.name + 'uploaded. Response: ' +
+                    JSON.stringify(data));*/
 
                     $log.debug("GPS data debugging.......");
                     $log.debug(data);
-                    $log.debug(status);
-                    $log.debug(headers);
                 });
             }
         }
-    };
-
-});
-
-app.controller('CustomerController', function ($scope, CustomerService, $routeParams) {
-
-    $scope.accelerationToggle = false;
-
-    $scope.accelerationData = function () {
-        CustomerService.getAccelerationData().then(function (response) {
-            $scope.accelerations = response;
-        })
-    };
-
-    $scope.delete = function (id) {
-        CustomerService.deleteCustomer(id).then(function (response) {
-            if (response) {
-                angular.forEach($scope.customers, function (customer, index) {
-                    if (id == customer.id) {
-                        $scope.customers.splice(index, 1);
-
-                        console.info("Customer " + id + " has been deleted.")
-                    }
-                });
-            }
-            else {
-                console.error("Customer " + id + " was unable to be deleted.")
-            }
-        });
-    };
-
-    $scope.save = function (id) {
-        angular.forEach($scope.customers, function (customer) {
-            if (id == customer.id) {
-                CustomerService.saveCustomer(customer).then(function (response) {
-                    if (response) {
-                        console.info("Customer " + id + " has been saved.");
-                    }
-                    else {
-                        console.error("Customer " + id + " was unable to be saved.");
-                    }
-                });
-            }
-            ;
-        });
-    };
-
-
-    $scope.create = function (currentCustomer) {
-
-        $scope.currentCustomer = currentCustomer;
-
-        // custom will be filled later...
-        var emptyCreateNewCustomerForm = {
-            firstName: "",
-            lastName: "",
-            email: "",
-            address: "",
-            phone: ""
-        };
-
-        CustomerService.createCustomer(currentCustomer).then(function (response) {
-            if (response) {
-                console.info("Customer has been created.");
-            }
-            else {
-                console.error("Customer was unable to be created.");
-            }
-        });
-
-        $scope.createNewCustomerForm.$setPristine();
-        $scope.currentCustomer = emptyCreateNewCustomerForm;
-
     };
 
 });

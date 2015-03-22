@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -16,8 +17,15 @@ import java.util.List;
 @Transactional
 public class GpsDAO {
 
+    private final static String ALL_GPS = "SELECT g FROM Gps g";
+
     @PersistenceContext
     EntityManager em;
+
+    public List<Gps> getAllGps() {
+        Query query = em.createQuery(ALL_GPS);
+        return query.getResultList();
+    }
 
     public Gps create(Gps gps) {
         try {
@@ -28,9 +36,13 @@ public class GpsDAO {
         return gps;
     }
 
-    public List<Gps> create(List<Gps> gpsList) {
+    public List<Gps> createList(List<Gps> gpsList) {
         try {
-            em.persist(gpsList);
+            //em.persist(gpsList);
+            for(Gps gps: gpsList ) {
+                create(gps);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

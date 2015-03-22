@@ -180,4 +180,4 @@ thead {
     background: #ebc550;
 }
 
-.angular-google-map-container { height: 400px; }
+.angular-google-map-container { height: 400px; margin-top: 64px}

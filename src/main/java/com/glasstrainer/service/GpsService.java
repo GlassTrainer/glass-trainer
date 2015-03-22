@@ -17,8 +17,12 @@ public class GpsService {
     @Autowired
     GpsDAO gpsDAO;
 
-    public List<Gps> create(List<Gps> gpsList) {
-        return gpsDAO.create(gpsList);
+    public List<Gps> getAllGps() {
+        return gpsDAO.getAllGps();
+    }
+
+    public List<Gps> createList(List<Gps> gpsList) {
+        return gpsDAO.createList(gpsList);
     }
 
 }
