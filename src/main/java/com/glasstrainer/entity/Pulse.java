@@ -28,6 +28,14 @@ public class Pulse implements Serializable {
     @Column(name = "created", nullable = false, updatable = false)
     private Date created;
 
+    public Pulse() {
+
+    }
+
+    public Pulse(String rate) {
+        this.rate = rate;
+    }
+
     public Pulse(User user, String rate) {
         this.user = user;
         this.rate = rate;
