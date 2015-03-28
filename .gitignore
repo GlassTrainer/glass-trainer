@@ -19,3 +19,4 @@ src/main/webapp/WEB-INF/spring/persistence-context-config.xml
 .project
 .springBeans
 GlassTrainer.iml
+glass-trainer.iml
