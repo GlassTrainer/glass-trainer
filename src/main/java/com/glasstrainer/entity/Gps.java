@@ -13,7 +13,7 @@ import java.util.Date;
  */
 
 @Entity
-public class Gps implements Serializable {
+public class Gps implements  Sensor, Serializable {
 
     @Id
     @GeneratedValue
@@ -31,7 +31,7 @@ public class Gps implements Serializable {
     private Double longitude;
 
     @ManyToOne
-    private User user;
+    private Training training;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", nullable = false, updatable = false)
@@ -40,14 +40,14 @@ public class Gps implements Serializable {
     public Gps() {
     }
 
-    public Gps(User user, Double latitude, Double longitude) {
-        this.user = user;
+    public Gps(Training training, Double latitude, Double longitude) {
+        this.training = training;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public Gps(User user, Double latitude, Double longitude, Time gpsTime) {
-        this.user = user;
+    public Gps(Training training, Double latitude, Double longitude, Time gpsTime) {
+        this.training = training;
         this.latitude = latitude;
         this.longitude = longitude;
         this.gpsTime = gpsTime;
@@ -88,11 +88,11 @@ public class Gps implements Serializable {
         this.longitude = longitude;
     }
 
-    public User getUser() {
-        return user;
+    public Training getTraining() {
+        return training;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTraining(Training training) {
+        this.training = training;
     }
 }

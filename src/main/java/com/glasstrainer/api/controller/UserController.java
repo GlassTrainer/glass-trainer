@@ -1,9 +1,9 @@
 package com.glasstrainer.api.controller;
 
 import com.glasstrainer.entity.Gps;
+import com.glasstrainer.service.GpsService;
 import com.glasstrainer.entity.Role;
 import com.glasstrainer.entity.User;
-import com.glasstrainer.service.GpsService;
 import com.glasstrainer.service.UserService;
 import com.glasstrainer.utils.GpsDataParser;
 import org.springframework.beans.factory.annotation.Autowired;

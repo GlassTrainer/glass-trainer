@@ -12,19 +12,16 @@ import java.util.Date;
  */
 
 @Entity
-public class Acceleration implements Serializable {
+public class Acceleration implements Sensor, Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    // cx:-0.023-cy:0.056-cz:1.001
-    // cx:-0.024-cy:0.049-cz:0.998
 
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne
-    private User user;
+    private Training training;
 
     private String cx;
     private String cy;
@@ -90,14 +87,6 @@ public class Acceleration implements Serializable {
         this.cz = cz;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public double getResultantAcceleration() {
         Double cx =  Double.parseDouble(getCx());
         Double cy =  Double.parseDouble(getCy());
@@ -109,4 +98,11 @@ public class Acceleration implements Serializable {
         return resultantAcc;
     }
 
+    public Training getTraining() {
+        return training;
+    }
+
+    public void setTraining(Training training) {
+        this.training = training;
+    }
 }

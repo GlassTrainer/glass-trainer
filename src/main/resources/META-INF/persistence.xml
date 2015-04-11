@@ -5,9 +5,7 @@
 
 
     <persistence-unit name="examplePU">
-        <!-- <class>au.com.example.persistence.dao.entity.CustomerEntity</class>-->
 
     </persistence-unit>
-
 
 </persistence>

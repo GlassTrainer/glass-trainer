@@ -1,6 +1,7 @@
 package com.glasstrainer.api.controller;
 
 import com.glasstrainer.entity.Acceleration;
+import com.glasstrainer.entity.Training;
 import com.glasstrainer.entity.User;
 import com.glasstrainer.entity.Pulse;
 import com.glasstrainer.service.AccelerationService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Created by Serhat CAN on 07.12.2014.
@@ -44,8 +44,10 @@ public class AccelerationController {
             user.setFirstname("Serhat");
             user.setSurname("CAN");
 
-            acceleration.setUser(user);
+            Training training = new Training(user, "Training1");
+            acceleration.setTraining(training);
 
+            /*
             if(acceleration.getUser() != null) {
                 if(acceleration.getUser().getFirstname() != null) {
                     result.put("firstname", acceleration.getUser().getFirstname());
@@ -54,7 +56,7 @@ public class AccelerationController {
                 if(acceleration.getUser().getSurname() != null) {
                     result.put("lastname", acceleration.getUser().getSurname());
                 }
-            }
+            }*/
         }
 
         for (Pulse pulse : pulses) {

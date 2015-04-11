@@ -46,7 +46,8 @@ public class GpsDataParser {
                     longitude = Integer.parseInt(tokens[4].substring(0, 3)) + Double.parseDouble(tokens[4].substring(3)) / 60;
                     latitude = Integer.parseInt(tokens[2].substring(0, 2)) + Double.parseDouble(tokens[2].substring(2)) / 60;
                     // actual data set
-                    gpsList.add(new Gps( user, latitude, longitude));
+                    // TODO: Training shoulnot be null
+                    gpsList.add(new Gps( null, latitude, longitude));
                 }
 
             } catch (NumberFormatException e) {

@@ -12,14 +12,14 @@ import java.util.Date;
  */
 
 @Entity
-public class Pulse implements Serializable {
+public class Pulse implements  Sensor, Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne
-    User user;
+    private Training training;
 
     @Column(nullable = false)
     private String rate;
@@ -36,8 +36,8 @@ public class Pulse implements Serializable {
         this.rate = rate;
     }
 
-    public Pulse(User user, String rate) {
-        this.user = user;
+    public Pulse(Training training, String rate) {
+        this.training = training;
         this.rate = rate;
     }
 
@@ -68,4 +68,11 @@ public class Pulse implements Serializable {
         this.rate = rate;
     }
 
+    public Training getTraining() {
+        return training;
+    }
+
+    public void setTraining(Training training) {
+        this.training = training;
+    }
 }
