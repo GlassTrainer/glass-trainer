@@ -43,7 +43,7 @@ app.controller('MainController', function ($rootScope, $scope, $location, $log) 
 
 });
 
-app.controller('AthleteController', function ($scope, $log, $routeParams, $upload, AthleteService) {
+app.controller('AthleteController', function ($scope, $log, $routeParams, $interval, $upload, AthleteService) {
 
     $scope.allAcc = function () {
         AthleteService.allAthletes().then(function (response) {
@@ -159,6 +159,55 @@ app.controller('AthleteController', function ($scope, $log, $routeParams, $uploa
                 });
             }
         }
+    };
+
+    $scope.currentData = {
+        acceleration: '',
+        pulse: ''
+    };
+    var stop;
+
+    $scope.chartConfig = {
+        options: {
+            chart: {
+                type: 'line',
+                zoomType: 'x'
+            }
+        },
+        series: [{
+            data: []
+        }],
+        title: {
+            text: 'Pulse - Time Graph'
+        },
+        xAxis: {currentMin: 0, currentMax: 20, minRange: 1},
+        loading: false
+    };
+
+    $scope.startMonitoring = function() {
+        // Don't start a new fight if we are already fighting
+        if ( angular.isDefined(stop) ) return;
+
+        stop = $interval(function() {
+            AthleteService.getCurrentData().then(function (response) {
+                $scope.currentData = response;
+                $scope.chartConfig.series[0].data = $scope.chartConfig.series[0].data.concat(parseInt($scope.currentData.pulse));
+                if($scope.chartConfig.series[0].data.length >= 20) {
+                    $scope.chartConfig.series[0].data.shift();
+                }
+            });
+        }, 1000);
+    };
+
+    $scope.stopMonitoring = function() {
+        if (angular.isDefined(stop)) {
+            $interval.cancel(stop);
+            stop = undefined;
+        }
+    };
+
+    $scope.resetMonitoring = function() {
+        $scope.currentData = undefined;
     };
 
 });

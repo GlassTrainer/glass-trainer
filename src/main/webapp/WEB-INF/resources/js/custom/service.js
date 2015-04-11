@@ -2,7 +2,6 @@ app.service('AthleteService', function ($http, $q) {
     this.createAthlete = function (athlete) {
 
         var d = $q.defer();
-
         $http.post('"api/user/create', athlete).success(function (response) {
             d.resolve(athlete);
         });
@@ -21,7 +20,6 @@ app.service('AthleteService', function ($http, $q) {
 
     this.getAthleteDetails = function (id) {
         var d = $q.defer();
-
         $http.get('api/user/' + id).success(function (response) {
             d.resolve(response);
         });
@@ -31,7 +29,6 @@ app.service('AthleteService', function ($http, $q) {
 
     this.getAccelerationData = function () {
         var d = $q.defer();
-
         $http.get('api/acceleration/current').success(function (response) {
             d.resolve(response);
         });
@@ -41,13 +38,20 @@ app.service('AthleteService', function ($http, $q) {
 
     this.getGpsData = function () {
         var d = $q.defer();
-
         $http.get('api/user/gps').success(function (response) {
             d.resolve(response);
         });
 
         return d.promise;
+    };
 
+    this.getCurrentData = function() {
+        var d = $q.defer();
+        $http.get('/api/acceleration/current').success(function (response) {
+            d.resolve(response);
+        });
+
+        return d.promise;
     }
 
 });
