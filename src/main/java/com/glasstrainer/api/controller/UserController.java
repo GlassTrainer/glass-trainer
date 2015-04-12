@@ -52,9 +52,6 @@ public class UserController {
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public Object getAll() {
-        for(User u: userRepository.findAll()) {
-            System.out.println(u.getEmail());
-        }
         return userRepository.findAll();
     }
 
