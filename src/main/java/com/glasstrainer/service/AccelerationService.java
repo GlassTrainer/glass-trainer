@@ -5,7 +5,7 @@ package com.glasstrainer.service;
  */
 
 import com.glasstrainer.entity.Acceleration;
-import com.glasstrainer.persistence.AccelerationDAO;
+import com.glasstrainer.repository.AccelerationRepository;
 import com.glasstrainer.service.interfaces.SensorInterface;
 import com.glasstrainer.entity.Sensor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,35 +17,30 @@ import java.util.List;
 public class AccelerationService implements SensorInterface {
 
     @Autowired
-    AccelerationDAO accelerationDAO;
+    AccelerationRepository accelerationRepository;
 
     @Deprecated
-    public List<Acceleration> getCurrentAccelerationData() {
-        return accelerationDAO.getAccelerationData();
+    public Acceleration getCurrentAccelerationData() {
+        return accelerationRepository.findFirstByOrderByCreatedDesc();
     }
 
     @Override
-    public List<Sensor> listLatestData(Long trainingId) {
+    public Sensor findLatestForTraining(Long trainingId) {
         return null;
     }
 
     @Override
-    public Sensor getLastData(Long trainingId) {
+    public List<Sensor> findAllForTraining(Long trainingId) {
         return null;
     }
 
     @Override
-    public List<Sensor> getAllData(Long trainingId) {
+    public List<Sensor> saveBatchData(Long trainingId, List<Sensor> data) {
         return null;
     }
 
     @Override
-    public List<Sensor> createBatchData(Long trainingId, List<Sensor> data) {
-        return null;
-    }
-
-    @Override
-    public Sensor createData(Long trainingId, Sensor data) {
+    public Sensor saveData(Long trainingId, Sensor data) {
         return null;
     }
 }

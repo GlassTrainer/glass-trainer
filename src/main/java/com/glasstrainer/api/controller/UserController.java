@@ -1,6 +1,7 @@
 package com.glasstrainer.api.controller;
 
 import com.glasstrainer.entity.Gps;
+import com.glasstrainer.repository.UserRepository;
 import com.glasstrainer.service.GpsService;
 import com.glasstrainer.entity.Role;
 import com.glasstrainer.entity.User;
@@ -28,70 +29,44 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    GpsService gpsService;
 
     @Autowired
-    GpsService gpsService;
+    UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = "application/json")
     public void createUser(@RequestBody User user) {
-        userService.create(user);
+        userRepository.save(user);
     }
 
     //@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     public User getUserById(@PathVariable Long id) {
-
-        return userService.getUserById(id);
+        return userRepository.findOne(id);
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<User> getAll() {
-        return userService.getAll();
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/upload-file", method = RequestMethod.POST)
-    public List<Gps> gpsUpload(@RequestParam("file") MultipartFile file, @RequestParam("username") String username)
-            throws IOException {
-        {
-            List<Gps> gpsList = new ArrayList<Gps>();
-
-            if (!file.isEmpty()) {
-                InputStream inputStream = file.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-                gpsList = GpsDataParser.parse(userService.getCurrentUser(), bufferedReader);
-                gpsService.createList(gpsList);
-                System.out.println("GPS Array Data Length: " + gpsList.size());
-
-
-            }
-
-            return gpsList;
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
+    public Object getAll() {
+        for(User u: userRepository.findAll()) {
+            System.out.println(u.getEmail());
         }
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/gps", method = RequestMethod.GET)
-    public List<Gps> gpsData() {
-        return gpsService.getAllGps();
+        return userRepository.findAll();
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/current", method = RequestMethod.GET, produces = "application/json")
     public UserDetails getCurrentUserInformation() {
-
         return userService.getCurrentUserDetails();
     }
 
     @RequestMapping(value = "/authenticated", method = RequestMethod.GET, produces = "application/json")
     public UserDetails authenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         if (authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
             return null;
         }
@@ -101,10 +76,8 @@ public class UserController {
 
     @RequestMapping(value = "/dummy", method = RequestMethod.GET, produces = "application/json")
     public void createDummyUsers() {
-
-        User user = new User("Serhat", "12345", "can.srht@gmail.com", "Serhat", "CAN", Role.ROLE_ADMIN);
-        userService.create(user);
-
+        User user = new User("ferhat", "12345", "fyaldiran@gmail.com", "Ferhat", "Yaldıran", Role.ROLE_TRAINER);
+        userRepository.save(user);
     }
 
 }

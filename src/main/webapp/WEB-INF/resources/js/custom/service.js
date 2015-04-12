@@ -29,7 +29,7 @@ app.service('AthleteService', function ($http, $q) {
 
     this.getAccelerationData = function () {
         var d = $q.defer();
-        $http.get('api/acceleration/current').success(function (response) {
+        $http.get('api/realtime/current').success(function (response) {
             d.resolve(response);
         });
 
@@ -38,7 +38,7 @@ app.service('AthleteService', function ($http, $q) {
 
     this.getGpsData = function () {
         var d = $q.defer();
-        $http.get('api/user/gps').success(function (response) {
+        $http.get('api/realtime/gps').success(function (response) {
             d.resolve(response);
         });
 
@@ -47,7 +47,7 @@ app.service('AthleteService', function ($http, $q) {
 
     this.getCurrentData = function() {
         var d = $q.defer();
-        $http.get('/api/acceleration/current').success(function (response) {
+        $http.get('/api/realtime/current').success(function (response) {
             d.resolve(response);
         });
 

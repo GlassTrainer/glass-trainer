@@ -23,7 +23,7 @@ app
 
             $routeProvider
                 .when(
-                '/main',
+                '/',
                 {
                     templateUrl: 'resources/html/partials/view/main.html'
                 })
@@ -32,13 +32,6 @@ app
                 {
                     controller: 'AthleteController',
                     templateUrl: 'resources/html/partials/view/athletes.html'
-
-                })
-                .when(
-                '/acceleration',
-                {
-                    controller: 'CustomerController',
-                    templateUrl: 'resources/html/partials/view/acceleration.html'
 
                 })
                 .when(
@@ -53,13 +46,19 @@ app
                     controller: 'AthleteController',
                     templateUrl: 'resources/html/partials/view/athlete_detail.html'
                 })
-                /*				.when(
+                .when(
+                '/realTime/monitor',
+                {
+                    controller: 'RealTimeController',
+                    templateUrl: 'resources/html/partials/view/realTime.html'
+                })
+                /*.when(
                  '/login',
                  {
                  templateUrl : 'resources/html/partials/view/login.html'
                  })*/
                 .otherwise({
-                    redirectTo: "/main"
+                    redirectTo: "/"
                 });
 
             // ======== http configuration ===============

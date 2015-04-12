@@ -43,6 +43,12 @@ app.controller('MainController', function ($rootScope, $scope, $location, $log) 
 
 });
 
+app.controller('RealTimeController', function ($scope, $log, $routeParams) {
+
+    $log.debug('RealTimeController initiated.');
+
+});
+
 app.controller('AthleteController', function ($scope, $log, $routeParams, $interval, $upload, AthleteService) {
 
     $scope.allAcc = function () {
@@ -141,7 +147,7 @@ app.controller('AthleteController', function ($scope, $log, $routeParams, $inter
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 $upload.upload({
-                    url: '/api/user/upload-file',
+                    url: '/api/realtime/upload-file',
                     fields: {
                         'username': $scope.athlete.username
                     },

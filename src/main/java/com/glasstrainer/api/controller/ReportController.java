@@ -15,13 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/report")
 public class ReportController {
 
-    @Autowired
-    private AccelerationService accelerationService;
-
-    @Autowired
-    private PulseService pulseService;
-
-    @RequestMapping(value = "/current", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/pulse", method = RequestMethod.GET, produces = "application/json")
     public String getCurrent () {
         return null;
     }

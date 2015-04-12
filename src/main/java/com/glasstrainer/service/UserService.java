@@ -1,7 +1,7 @@
 package com.glasstrainer.service;
 
 import com.glasstrainer.entity.User;
-import com.glasstrainer.persistence.UserDAO;
+import com.glasstrainer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +18,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    UserDAO userDAO;
+    UserRepository userRepository;
 
     public UserDetails getCurrentUserDetails() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -32,21 +32,21 @@ public class UserService {
 
     public User getCurrentUser() {
         UserDetails userDetails = getCurrentUserDetails();
-        User user = userDAO.getByUsername(userDetails.getUsername());
+        User user = userRepository.findByUsername(userDetails.getUsername());
         return user;
     }
 
 
     public User getUserById(Long id) {
-        return userDAO.getById(id);
+        return userRepository.findOne(id);
     }
 
     public User create(User user) {
-        return userDAO.create(user);
+        return userRepository.save(user);
     }
 
     public List<User> getAll() {
-        return userDAO.getAll();
+        return (List<User>)userRepository.findAll();
     }
 
 }

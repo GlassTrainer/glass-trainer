@@ -12,16 +12,11 @@ import java.util.List;
 @Component
 public interface SensorInterface {
 
-    /*
-       Gets latest 10 sensor data for the given training id
-     */
-    List<Sensor> listLatestData(Long trainingId);
+    Sensor findLatestForTraining(Long trainingId);
 
-    Sensor getLastData(Long trainingId);
+    List<Sensor> findAllForTraining(Long trainingId);
 
-    List<Sensor> getAllData(Long trainingId);
+    List<Sensor> saveBatchData(Long trainingId, List<Sensor> data);
 
-    List<Sensor> createBatchData(Long trainingId, List<Sensor> data);
-
-    Sensor createData(Long trainingId, Sensor data);
+    Sensor saveData(Long trainingId, Sensor data);
 }
