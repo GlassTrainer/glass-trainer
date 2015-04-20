@@ -1,11 +1,26 @@
 <div class="container" style="margin-top:60px">
+    <div class="col-md-12 col-sm-12 col-xs-12 Bar-Title">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                Choose an Activity
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            </ul>
+        </div>
+    </div>
+
 <div class="col-md-12 col-sm-12 col-xs-12 Bar-Title">
     <p>Please choose GPS data file to see the pattern which belongs to the last activity.</p>
     <span>GPS Data File Upload</span>
     <button class="btn btn-default button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</button>
 </div>
 
-<div class="col-md-12 col-sm-12 col-xs-12 BG-White">
+<div class="col-md-12 col-sm-12 col-xs-12 BG-White Padding-B15">
 
 <ui-gmap-google-map center='map.center' draggable="true" options="options" zoom='map.zoom'>
     <ui-gmap-polyline ng-repeat="p in polylines"
