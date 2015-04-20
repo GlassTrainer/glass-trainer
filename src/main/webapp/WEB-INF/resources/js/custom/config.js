@@ -34,12 +34,12 @@ app
                     templateUrl: 'resources/html/partials/view/athletes.html'
 
                 })
-                .when(
+                /*.when(
                 '/athlete/create',
                 {
                     controller: 'AthleteController',
                     templateUrl: 'resources/html/partials/view/athlete_create.html'
-                })
+                })*/
                 .when(
                 '/athlete/:id',
                 {
@@ -57,6 +57,12 @@ app
                  {
                  templateUrl : 'resources/html/partials/view/login.html'
                  })*/
+                .when(
+                '/report',
+                {
+                    controller: 'ReportController',
+                    templateUrl: 'resources/html/partials/view/report.html'
+                })
                 .otherwise({
                     redirectTo: "/"
                 });

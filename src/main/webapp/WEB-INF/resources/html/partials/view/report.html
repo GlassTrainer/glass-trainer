@@ -1,0 +1,22 @@
+
+<div class="col-md-12 col-sm-12 col-xs-12 BG-White  Margin-T30">
+
+<ui-gmap-google-map center='map.center' draggable="true" options="options" zoom='map.zoom'>
+    <ui-gmap-polyline ng-repeat="p in polylines"
+                      path="p.path"
+                      stroke="p.stroke"
+                      visible='p.visible'
+                      geodesic='p.geodesic'
+                      fit="false"
+                      editable="p.editable"
+                      draggable="p.draggable">
+    </ui-gmap-polyline>
+</ui-gmap-google-map>
+
+
+    <div class="col-md-3 col-sm-3 col-xs-12 theme-player-detail-image  TX-Center">
+        <span>GPS Data File Upload</span>
+        <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</div>
+    </div>
+
+</div>

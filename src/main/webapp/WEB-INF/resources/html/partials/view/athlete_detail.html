@@ -1,16 +1,3 @@
-<ui-gmap-google-map center='map.center' draggable="true" options="options" zoom='map.zoom'>
-    <ui-gmap-polyline ng-repeat="p in polylines"
-                      path="p.path"
-                      stroke="p.stroke"
-                      visible='p.visible'
-                      geodesic='p.geodesic'
-                      fit="false"
-                      editable="p.editable"
-                      draggable="p.draggable">
-    </ui-gmap-polyline>
-</ui-gmap-google-map>
-
-
 <div class="container theme-showcase padding-RL0 theme-player-detail-part" role="main"
      data-ng-init="athleteDetails()">
     <div class="col-md-12 col-sm-12 col-xs-12 BG-White  Margin-T30">
@@ -67,29 +54,6 @@
 
         </div>
 
-    </div>
-
-    <div class="col-md-12 col-sm-12 col-xs-12 BG-White  Margin-T30">
-
-        <div class="col-md-3 col-sm-3 col-xs-12 theme-player-detail-image  TX-Center">
-            <span>GPS Data File Upload</span>
-            <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</div>
-        </div>
-
-        <div class="col-md-9 col-sm-9 col-xs-12 Padding-RL0">
-            <button type="button" ng-click="startMonitoring()">Start Monitoring</button>
-            <button type="button" ng-click="stopMonitoring()">Stop Monitoring</button>
-            <button type="button" ng-click="resetMonitoring()">Reset Monitoring</button>
-
-            <span><h2>{{currentData.acceleration}}</h2></span>
-            <span><h2>{{currentData.pulse}}</h2></span>
-
-        </div>
-
-    </div>
-
-    <div class="row" style="max-width: 800px; max-height: 500px">
-        <highchart id="chart1" config="chartConfig" class="span10"></highchart>
     </div>
 
 </div>
