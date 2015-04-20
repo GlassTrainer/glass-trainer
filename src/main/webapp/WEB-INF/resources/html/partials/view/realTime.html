@@ -1,17 +1,45 @@
 <div class="container theme-showcase padding-RL0" role="main">
 
-    <div class="col-md-9 col-sm-9 col-xs-12 Padding-RL0">
-        <button type="button" ng-click="startMonitoring()">Start Monitoring</button>
-        <button type="button" ng-click="stopMonitoring()">Stop Monitoring</button>
-        <button type="button" ng-click="resetMonitoring()">Reset Monitoring</button>
+    <div class="col-md-4 real-time-box">
+        <div class="col-md-6"><span class="glyphicon glyphicon-heart real-time-heart
+        "></span></div>
+        <div class="col-md-6">
+            <span class="real-time-explanation">Şu anki Nabız:</span>
+            <h1>89 {{currentData.pulse}}</h1>
+        </div>
+    </div>
 
-        <span><h2>{{currentData.acceleration}}</h2></span>
-        <span><h2>{{currentData.pulse}}</h2></span>
+    <div class="col-md-4 real-time-box">
+        <div class="col-md-6"><span class="glyphicon glyphicon-road real-time-road"></span></div>
+        <div class="col-md-6">
+            <span class="real-time-explanation">İvmelenme</span>
+            <h1>12 {{currentData.acceleration}}</h1>
+        </div>
+
 
     </div>
 
-    <div class="row" style="max-width: 800px; max-height: 500px">
-        <highchart id="chart1" config="chartConfig" class="span10"></highchart>
+    <div class="col-md-4 real-time-box">
+        <div class="col-md-6"><span class="glyphicon glyphicon-fire real-time-fire"></span></div>
+        <div class="col-md-6">
+            <span class="real-time-explanation">Sıcaklık</span>
+            <h1>39 {{currentData.acceleration}}</h1>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 Bar-Title">
+        <button class="btn btn-default" type="button" ng-click="startMonitoring()"><span class="glyphicon glyphicon-play"></span> Start Monitoring</button>
+        <button class="btn btn-default" type="button" ng-click="stopMonitoring()"><span class="glyphicon glyphicon-stop"></span> Stop Monitoring</button>
+        <button class="btn btn-default" type="button" ng-click="resetMonitoring()"><span class="glyphicon glyphicon-refresh"></span> Reset Monitoring</button>
+
+
+
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 BG-White">
+        <highchart id="chart1" config="chartConfig"></highchart>
     </div>
 
 </div>
