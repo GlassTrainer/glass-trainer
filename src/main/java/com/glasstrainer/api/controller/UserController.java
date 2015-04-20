@@ -73,7 +73,7 @@ public class UserController {
 
     @RequestMapping(value = "/dummy", method = RequestMethod.GET, produces = "application/json")
     public void createDummyUsers() {
-        User user = new User("ferhat", "12345", "fyaldiran@gmail.com", "Ferhat", "Yaldıran", Role.ROLE_TRAINER);
+        User user = new User("ferhat", "12345", "fyaldiran@gmail.com", "Ferhat", "Yaldıran", Role.ROLE_ADMIN);
         userRepository.save(user);
     }
 

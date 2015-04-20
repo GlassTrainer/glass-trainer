@@ -87,6 +87,9 @@ thead {
 .TX-Center {
     text-align: center;
 }
+.TX-Left {
+    text-align: left;
+}
 
 .theme-body {
     background: url(img/bg.png) #eee;
@@ -181,3 +184,29 @@ thead {
 }
 
 .angular-google-map-container { height: 400px; margin-top: 64px}
+.Bar-Title{padding: 10px; background: #fff; margin: 15px 0 2px 0;}
+
+.real-time-box{
+    margin-top: 15px;
+    min-height: 190px;
+    font-size: 13px;
+    padding: 12px;
+    COLOR: #A6A6A6;
+    text-align:center
+}
+.real-time-box div{background: #fff;}
+.real-time-box h1{  font-size: 90px;
+    color: #6f6f6f;
+    text-align: center;}
+.real-time-heart{  font-size: 107px;
+    line-height: 1.5;
+    color: #FF3232;}
+
+.real-time-road{  font-size: 107px;
+    line-height: 1.5;
+    color: #428BCA;}
+.real-time-fire{font-size: 107px;
+    line-height: 1.5;
+    color: #D7533C;}
+.real-time-explanation{  padding-top: 10px;
+    display: block;}
