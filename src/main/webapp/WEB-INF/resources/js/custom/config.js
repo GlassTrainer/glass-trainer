@@ -34,12 +34,6 @@ app
                     templateUrl: 'resources/html/partials/view/athletes.html'
 
                 })
-                /*.when(
-                '/athlete/create',
-                {
-                    controller: 'AthleteController',
-                    templateUrl: 'resources/html/partials/view/athlete_create.html'
-                })*/
                 .when(
                 '/athlete/:id',
                 {

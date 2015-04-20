@@ -72,7 +72,7 @@ app.controller('AthleteController', function ($scope, $log, $routeParams, $inter
 });
 
 
-app.controller('RealTimeController', function ($scope, $log, $routeParams) {
+app.controller('RealTimeController', function ($scope, $log) {
 
     $log.debug('RealTimeController initiated.');
 
@@ -128,7 +128,7 @@ app.controller('RealTimeController', function ($scope, $log, $routeParams) {
 });
 
 
-app.controller('ReportController', function ($scope, $log, $routeParams) {
+app.controller('ReportController', function ($scope, $log, AthleteService) {
 
     //$scope.map = { center: { latitude: 39, longitude: 32 }, zoom: 7 };
     $scope.map = { center: {latitude: 39, longitude: 32}, zoom: 14};
