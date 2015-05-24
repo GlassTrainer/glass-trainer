@@ -2,22 +2,24 @@
     <div class="col-md-12 col-sm-12 col-xs-12 Bar-Title">
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                Choose an Activity
+                Antrenman Seç
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Antrenman 1</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Antrenman 2</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Antrenman 3</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Antrenman 4</a></li>
             </ul>
         </div>
     </div>
 
 <div class="col-md-12 col-sm-12 col-xs-12 Bar-Title">
-    <p>Please choose GPS data file to see the pattern which belongs to the last activity.</p>
-    <span>GPS Data File Upload</span>
-    <button class="btn btn-default button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</button>
+    <!--<p>Please choose GPS data file to see the pattern which belongs to the last activity.</p>-->
+    <p>Harita üzerinde GPS verisini görüntülemek için GPS veri dosyasını yükleyin.</p>
+    <span>GPS veri dsoyası yükle</span>
+    <button class="btn btn-default button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Dosya seç</button>
+    <button class="btn btn-default button" ng-click="deleteGpsData()">GPS verisini silin</button>
 </div>
 
 <div class="col-md-12 col-sm-12 col-xs-12 BG-White Padding-B15">
@@ -29,14 +31,10 @@
                       visible='p.visible'
                       geodesic='p.geodesic'
                       fit="false"
-
                       editable="p.editable"
                       draggable="p.draggable">
     </ui-gmap-polyline>
 </ui-gmap-google-map>
-
-
-
 
 </div>
 </div>

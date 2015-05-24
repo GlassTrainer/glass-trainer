@@ -72,13 +72,16 @@ app.controller('AthleteController', function ($scope, $log, $routeParams, $inter
 });
 
 
-app.controller('RealTimeController', function ($scope, $log) {
+app.controller('RealTimeController', function ($scope, $log, $routeParams, $interval, $upload, AthleteService) {
 
     $log.debug('RealTimeController initiated.');
 
     $scope.currentData = {
+        time: '',
+        training: '',
         acceleration: '',
-        pulse: ''
+        pulse: '',
+        status: ''
     };
     var stop;
 
@@ -93,13 +96,14 @@ app.controller('RealTimeController', function ($scope, $log) {
             data: []
         }],
         title: {
-            text: 'Pulse - Time Graph'
+            text: 'Kalp Atım Hızı - Zaman Grafiği'
         },
         xAxis: {currentMin: 0, currentMax: 20, minRange: 1},
         loading: false
     };
 
     $scope.startMonitoring = function() {
+        $scope.currentData.status = "Başlatıldı";
         // Don't start a new fight if we are already fighting
         if ( angular.isDefined(stop) ) return;
 
@@ -115,6 +119,7 @@ app.controller('RealTimeController', function ($scope, $log) {
     };
 
     $scope.stopMonitoring = function() {
+        $scope.currentData.status = "Durduruldu";
         if (angular.isDefined(stop)) {
             $interval.cancel(stop);
             stop = undefined;
@@ -122,13 +127,14 @@ app.controller('RealTimeController', function ($scope, $log) {
     };
 
     $scope.resetMonitoring = function() {
+        $scope.currentData.status = "Sıfırlandı";
         $scope.currentData = undefined;
     };
 
 });
 
 
-app.controller('ReportController', function ($scope, $log, AthleteService) {
+app.controller('ReportController', function ($scope, $upload, $log, AthleteService) {
 
     //$scope.map = { center: { latitude: 39, longitude: 32 }, zoom: 7 };
     $scope.map = { center: {latitude: 39, longitude: 32}, zoom: 14};
@@ -148,30 +154,30 @@ app.controller('ReportController', function ($scope, $log, AthleteService) {
         }
     ];
 
-    AthleteService.getGpsData().then(function (response) {
+    var getGpsData = function() {
+        AthleteService.getGpsData().then(function (response) {
 
-        //$log.debug(response);
-        $scope.gpsData = response;
-        $scope.map.center.latitude = $scope.gpsData[0].latitude;
-        $scope.map.center.longitude = $scope.gpsData[0].longitude;
+            //$log.debug(response);
+            $scope.gpsData = response;
+            $scope.map.center.latitude = $scope.gpsData[0].latitude;
+            $scope.map.center.longitude = $scope.gpsData[0].longitude;
 
-        for(var i = 0; i<$scope.gpsData.length; i++) {
-            var g = { latitude : $scope.gpsData[i].latitude,
-                longitude : $scope.gpsData[i].longitude };
-            $scope.polylines[0].path.push(g) ;
-        }
-    });
+            for(var i = 0; i<$scope.gpsData.length; i++) {
+                var g = { latitude : $scope.gpsData[i].latitude,
+                    longitude : $scope.gpsData[i].longitude };
+                $scope.polylines[0].path.push(g) ;
+            }
+        });
+    };
 
+    getGpsData();
 
     $scope.upload = function (files) {
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 $upload.upload({
-                    url: '/api/realtime/upload-file',
-                    fields: {
-                        'username': $scope.athlete.username
-                    },
+                    url: 'api/realtime/upload-file',
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
@@ -180,11 +186,17 @@ app.controller('ReportController', function ($scope, $log, AthleteService) {
                 }).success(function (data, status, headers, config) {
                     /*console.log('file ' + config.file.name + 'uploaded. Response: ' +
                      JSON.stringify(data));*/
-
+                    getGpsData();
                     $log.debug("GPS data debugging.......");
-                    $log.debug(data);
                 });
             }
         }
+
     };
+
+    $scope.deleteGpsData = function() {
+        AthleteService.deleteGpsData().then(function (response) {
+            $scope.map = { center: {latitude: 39, longitude: 32}, zoom: 14};
+        });
+    }
 });

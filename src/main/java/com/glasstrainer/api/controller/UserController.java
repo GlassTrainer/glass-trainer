@@ -1,28 +1,16 @@
 package com.glasstrainer.api.controller;
 
-import com.glasstrainer.entity.Gps;
-import com.glasstrainer.repository.UserRepository;
-import com.glasstrainer.service.GpsService;
 import com.glasstrainer.entity.Role;
 import com.glasstrainer.entity.User;
+import com.glasstrainer.repository.UserRepository;
+import com.glasstrainer.service.GpsService;
 import com.glasstrainer.service.UserService;
-import com.glasstrainer.utils.GpsDataParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
 
 @RestController
 @RequestMapping(value = "/api/user")
@@ -40,6 +28,7 @@ public class UserController {
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = "application/json")
     public void createUser(@RequestBody User user) {
+        System.out.println("New user request: " + user.getEmail());
         userRepository.save(user);
     }
 

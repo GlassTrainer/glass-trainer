@@ -5,6 +5,7 @@ import com.glasstrainer.entity.Pulse;
 import com.glasstrainer.entity.Sensor;
 import com.glasstrainer.repository.AccelerationRepository;
 import com.glasstrainer.repository.PulseRepository;
+import com.glasstrainer.utils.PulseDataCorrection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class RealTimeService {
     @Autowired
     AccelerationRepository accelerationRepository;
 
+    @Autowired
+    PulseDataCorrection pulseDataCorrection;
 
     /*
     TODO: will be deleted later. It should be based on TrainingId
@@ -30,11 +33,13 @@ public class RealTimeService {
     public List<Sensor> findLatestByNotLookingTraining() {
 
         Pulse pulse =  pulseRepository.findFirstByOrderByCreatedDesc();
+        pulse = pulseDataCorrection.fix(pulse);
+
         Acceleration acceleration = accelerationRepository.findFirstByOrderByCreatedDesc();
 
         List<Sensor> sensorList = new ArrayList<Sensor>();
-        sensorList.add(pulse);
         sensorList.add(acceleration);
+        sensorList.add(pulse);
 
         return sensorList;
     }

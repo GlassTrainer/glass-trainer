@@ -24,7 +24,7 @@ public class GpsDataParser {
             String temp = br.readLine();
 
             while (temp != null) {
-                if (temp.contains("GPGGA")) {
+                if (temp.contains("$GPGGA")) {
                     ggpaList.add(temp);
                 }
                 temp = br.readLine();
@@ -45,9 +45,13 @@ public class GpsDataParser {
                 if ((tokens[4].length()) > 1 && (tokens[2].length() > 1)) {
                     longitude = Integer.parseInt(tokens[4].substring(0, 3)) + Double.parseDouble(tokens[4].substring(3)) / 60;
                     latitude = Integer.parseInt(tokens[2].substring(0, 2)) + Double.parseDouble(tokens[2].substring(2)) / 60;
-                    // actual data set
-                    // TODO: Training shoulnot be null
-                    gpsList.add(new Gps( null, latitude, longitude));
+
+                    System.out.println(latitude + " - " + longitude);
+                    // 39 - 32
+                    if((latitude>38 && latitude<40) && (longitude>32 && longitude<33)) {
+                        gpsList.add(new Gps( null, latitude, longitude));
+                    }
+
                 }
 
             } catch (NumberFormatException e) {
