@@ -20,7 +20,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/glass-trainer"/>
         <property name="username" value="root"/>
-        <property name="password" value="1q2w3e4r:!"/>
+        <property name="password" value=""/>
     </bean>
 
 
