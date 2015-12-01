@@ -1,4 +1,4 @@
 Glass Trainer Webservice and Client App
 =======================================
 
-http://srhtcn.github.io/glass-trainer/
+More information on http://glasstrainer.github.io/glass-trainer/
